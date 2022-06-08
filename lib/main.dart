@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:product_catalogue_flutter/core/constants/app/app_constant.dart';
-import 'package:product_catalogue_flutter/core/init/navigation/navigation_route.dart';
+
+import 'core/constants/app/app_constant.dart';
+import 'core/init/navigation/navigation_route.dart';
 
 void main() {
   runApp(const MyApp());
