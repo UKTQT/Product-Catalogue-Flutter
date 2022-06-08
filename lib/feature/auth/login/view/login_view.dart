@@ -31,7 +31,7 @@ class LoginView extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.45,
+              height: MediaQuery.of(context).size.height * 0.5,
               width: double.maxFinite,
               child: Container(
                 decoration: const BoxDecoration(
