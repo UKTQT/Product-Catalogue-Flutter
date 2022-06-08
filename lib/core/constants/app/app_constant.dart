@@ -9,4 +9,5 @@ class AppConstant {
 
   //Main Constants
   final String APP_TITLE = 'Product Catalogue';
+  final String APP_LOGO_PATH = 'assets/images/logo.jpg';
 }

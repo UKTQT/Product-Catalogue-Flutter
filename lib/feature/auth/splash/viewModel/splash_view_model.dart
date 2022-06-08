@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:product_catalogue_flutter/core/constants/navigation/navigation_constant.dart';
 
+import '../../../../core/constants/navigation/navigation_constant.dart';
 import '../../../../core/base/viewModel/base_view_model.dart';
 
 class SplashViewModel extends ChangeNotifier with BaseViewModel {
