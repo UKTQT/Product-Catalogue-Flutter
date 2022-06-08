@@ -11,7 +11,7 @@ class SplashViewModel extends ChangeNotifier with BaseViewModel {
   }
 
   void militaryGateControl() {
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       navigationServicePoint.navigateToPage(path: NavigationConstant.LOGIN);
     });
   }
