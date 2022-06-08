@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:product_catalogue_flutter/core/init/navigation/navigation_service.dart';
+import 'package:product_catalogue_flutter/feature/auth/splash/view/splash_view.dart';
 import 'package:provider/provider.dart';
 
 import 'core/constants/app/app_constant.dart';
 import 'core/init/navigation/navigation_route.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
 /* void main() {
-  runApp(
-    MultiProvider(providers: [
-      Provider(create: (_) => deneme()),
-      ChangeNotifierProvider(create: (context) => deneme())
+  runApp(const MyApp());
+} */
+
+void main() {
+  runApp(MultiProvider(
+    providers: [
+      Provider(create: (_) => SplashView()),
     ],
     builder: (context, child) => const MyApp(),
-    )
-  );
-} */
+  ));
+}
 
 /*
   fonksiyon çalıştırma

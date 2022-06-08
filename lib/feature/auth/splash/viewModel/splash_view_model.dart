@@ -6,10 +6,11 @@ import '../../../../core/base/viewModel/base_view_model.dart';
 class SplashViewModel extends ChangeNotifier with BaseViewModel {
   SplashViewModel() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      militaryGateControl();
+      //militaryGateControl();
+      print('ewqeqw');
     });
   }
-
+  String isLoading = 'wedq';
   void militaryGateControl() {
     Future.delayed(const Duration(seconds: 2), () {
       navigationServicePoint.navigateToPage(path: NavigationConstant.LOGIN);
