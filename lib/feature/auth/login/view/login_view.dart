@@ -8,35 +8,47 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            flex: 7,
-            child: Container(
-              decoration: const BoxDecoration(
-                  color: Color(0xfff9bc3b),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(40),
-                      bottomRight: Radius.circular(40))),
-              width: double.maxFinite,
-              child: Hero(
-                tag: 'app_logo',
-                child: Image(
-                  width: MediaQuery.of(context).size.width * 0.98,
-                  image: AssetImage(
-                    AppConstant.instance!.APP_LOGO_PATH,
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Container(
+                alignment: Alignment.topCenter,
+                color: const Color(0xfff9bc3b),
+                width: double.maxFinite,
+                child: Hero(
+                  tag: 'app_logo',
+                  child: Image(
+                    width: MediaQuery.of(context).size.width * 0.98,
+                    image: AssetImage(
+                      AppConstant.instance!.APP_LOGO_PATH,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            flex: 5,
-            child: Column(
-              children: [],
-            ),
-          )
-        ],
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.45,
+              width: double.maxFinite,
+              child: Container(
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50))),
+                child: Column(
+                  children: [
+                    Text('Hoşgeldiniz'),
+                    Text('Lütfen bilgileriniz ile giriş yapınız'),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

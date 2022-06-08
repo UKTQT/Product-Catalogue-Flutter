@@ -18,7 +18,7 @@ class SplashView extends StatelessWidget {
             child: Hero(
               tag: 'app_logo',
               child: Image(
-                width: MediaQuery.of(context).size.width * 0.65,
+                width: MediaQuery.of(context).size.width * 0.45,
                 image: AssetImage(
                   AppConstant.instance!.APP_LOGO_PATH,
                 ),
