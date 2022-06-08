@@ -15,9 +15,13 @@ class SplashView extends StatelessWidget {
       builder: (context, child) {
         return Scaffold(
           body: Center(
-            child: Image(
-              image: AssetImage(
-                AppConstant.instance!.APP_LOGO_PATH,
+            child: Hero(
+              tag: 'app_logo',
+              child: Image(
+                width: MediaQuery.of(context).size.width * 0.65,
+                image: AssetImage(
+                  AppConstant.instance!.APP_LOGO_PATH,
+                ),
               ),
             ),
           ),
