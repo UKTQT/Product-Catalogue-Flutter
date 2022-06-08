@@ -1,3 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:product_catalogue_flutter/core/constants/navigation/navigation_constant.dart';
 
-class SplashViewModel extends ChangeNotifier {}
+import '../../../../core/base/viewModel/base_view_model.dart';
+
+class SplashViewModel extends ChangeNotifier with BaseViewModel {
+  SplashViewModel() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      militaryGateControl();
+    });
+  }
+
+  void militaryGateControl() {
+    Future.delayed(Duration(seconds: 2), () {
+      navigationServicePoint.navigateToPage(path: NavigationConstant.LOGIN);
+    });
+  }
+}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:product_catalogue_flutter/core/init/navigation/navigation_service.dart';
 import 'package:provider/provider.dart';
 
 import 'core/constants/app/app_constant.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: NavigationRoute.instance.generateRoute,
+      navigatorKey: NavigationService.instance.navigatorKey,
     );
   }
 }
