@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'core/constants/app/app_constant.dart';
 import 'core/init/navigation/navigation_route.dart';
@@ -6,6 +7,31 @@ import 'core/init/navigation/navigation_route.dart';
 void main() {
   runApp(const MyApp());
 }
+
+/* void main() {
+  runApp(
+    MultiProvider(providers: [
+      Provider(create: (_) => deneme()),
+      ChangeNotifierProvider(create: (context) => deneme())
+    ],
+    builder: (context, child) => const MyApp(),
+    )
+  );
+} */
+
+/*
+  fonksiyon çalıştırma
+
+  onPressed: (){
+    context.read<viewModel>().changeTheme();
+
+  }
+
+  void changeTheme(){
+    islighttheme = false;
+    notifyListeners;
+  }
+*/
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
