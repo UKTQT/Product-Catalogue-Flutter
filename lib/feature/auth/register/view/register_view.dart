@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/constants/app/app_constant.dart';
+import '../../../../core/constants/navigation/navigation_constant.dart';
 import '../../../../core/extensions/input_extension/input_extension.dart';
 import '../../../../core/extensions/padding_extension/padding_extension.dart';
 import '../../../../core/extensions/color_extension/color_extension.dart';
@@ -370,7 +371,10 @@ class RegisterView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, NavigationConstant.LOGIN, (route) => false);
+                    },
                     style: ElevatedButton.styleFrom(
                         primary: context.themeWhiteColor),
                     child: Text(
