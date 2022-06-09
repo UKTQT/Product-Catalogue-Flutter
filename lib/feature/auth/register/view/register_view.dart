@@ -114,15 +114,17 @@ class RegisterView extends StatelessWidget {
                     return 'İsim boş geçilemez.';
                   } else if (value.contains(' ')) {
                     return 'İsim boş karakter içeremez';
-                  } else if (value.length > 20) {
-                    return 'isim max 20 karakter olmalıdır';
+                  } else if (value.length > 20 || value.length < 3) {
+                    return 'isim max 3 - 20 karakter arası olmalıdır';
+                  } else if (!RegExp(r"^[a-zA-Z]+$").hasMatch(value)) {
+                    return 'İsim sadece harflerden oluşabilir';
                   }
                   return null;
                 },
                 style: TextStyle(color: context.themeWhiteColor),
                 decoration: InputDecoration(
                   isDense: true,
-                  labelText: 'Ad',
+                  labelText: 'İsim',
                   labelStyle: TextStyle(color: context.themeWhite70Color),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
@@ -148,8 +150,10 @@ class RegisterView extends StatelessWidget {
                     return 'Soyad boş geçilemez.';
                   } else if (value.contains(' ')) {
                     return 'Soyad boş karakter içeremez';
-                  } else if (value.length > 20) {
+                  } else if (value.length > 20 || value.length < 2) {
                     return 'Soyad max 20 karakter olmalıdır';
+                  } else if (!RegExp(r"^[a-zA-Z0-9_]*$").hasMatch(value)) {
+                    return 'Soyad sadece harf ve rakamlardan oluşabilir';
                   }
                   return null;
                 },
@@ -183,6 +187,8 @@ class RegisterView extends StatelessWidget {
                     return 'Telefon No boş geçilemez.';
                   } else if (value.length < 14 || value.length > 14) {
                     return 'Telefon No 10 karakter olmalıdır';
+                  } else if (!RegExp(r"^[0-9]+$").hasMatch(value)) {
+                    return 'Telefon No sadece rakamlardan oluşabilir';
                   }
                   return null;
                 },
@@ -212,7 +218,6 @@ class RegisterView extends StatelessWidget {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.emailAddress,
                 cursorColor: context.themeMainColor1,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'E-Mail boş geçilemez.';
@@ -300,20 +305,12 @@ class RegisterView extends StatelessWidget {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Şifre tekrar boş geçilemez.';
-                  } else if (value != '' || value != null) {
+                  } else if (value.isNotEmpty || value != null) {
                     if (value != _passwordController.text) {
                       return 'Şifre ile aynı olmalıdır';
                     }
                   }
 
-                  /* else if (value.length < 6 || value.length > 20) {
-                    return 'Şifre 6 - 20 karakter olmalıdır.';
-                  } else if (value.contains(' ')) {
-                    return 'Boş karakter girilemez';
-                  } else if (!RegExp(r"^[a-zA-Z0-9_]*$").hasMatch(value)) {
-                    //Alfanumerik RegExp
-                    return 'Şifre sadece harf ve rakamlardan oluşmalıdır';
-                  } */
                   return null;
                 },
                 style: TextStyle(color: context.themeWhiteColor),
