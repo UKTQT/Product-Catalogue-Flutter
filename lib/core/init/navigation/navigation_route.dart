@@ -17,7 +17,7 @@ class NavigationRoute {
             widget: const SplashView(), pageName: NavigationConstant.DEFAULT);
       case NavigationConstant.LOGIN:
         return normalNavigate(
-            widget: const LoginView(), pageName: NavigationConstant.LOGIN);
+            widget: LoginView(), pageName: NavigationConstant.LOGIN);
 
       default:
         return normalNavigate(
