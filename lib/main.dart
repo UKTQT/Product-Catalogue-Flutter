@@ -15,20 +15,6 @@ void main() {
   ));
 }
 
-/*
-  fonksiyon çalıştırma
-
-  onPressed: (){
-    context.read<viewModel>().changeTheme();
-
-  }
-
-  void changeTheme(){
-    islighttheme = false;
-    notifyListeners;
-  }
-*/
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -36,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: AppConstant.instance!.APP_TITLE,
-      theme: ThemeData(inputDecorationTheme: InputDecorationTheme()),
+      theme: ThemeData(inputDecorationTheme: const InputDecorationTheme()),
       onGenerateRoute: NavigationRoute.instance.generateRoute,
       navigatorKey: NavigationService.instance.navigatorKey,
     );
