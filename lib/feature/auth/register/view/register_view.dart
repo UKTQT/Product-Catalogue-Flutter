@@ -10,6 +10,7 @@ import '../viewModel/register_view_model.dart';
 class RegisterView extends StatelessWidget {
   RegisterView({Key? key}) : super(key: key);
 
+  //controller heyeti
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _surNameController = TextEditingController();
@@ -30,6 +31,7 @@ class RegisterView extends StatelessWidget {
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
+                //--- Logo and Bg Color
                 Container(
                   alignment: Alignment.topCenter,
                   color: context.themeMainColor1,
@@ -37,6 +39,7 @@ class RegisterView extends StatelessWidget {
                   height: MediaQuery.of(context).size.height, //max height
                   child: appLogo(context),
                 ),
+                //--- Form Items
                 Container(
                   height: MediaQuery.of(context).size.height * 0.85,
                   width: double.maxFinite,
@@ -297,8 +300,10 @@ class RegisterView extends StatelessWidget {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Şifre tekrar boş geçilemez.';
-                  } else if (value != _passwordController.text) {
-                    return 'Şifre ile aynı olmalıdır';
+                  } else if (value != '' || value != null) {
+                    if (value != _passwordController.text) {
+                      return 'Şifre ile aynı olmalıdır';
+                    }
                   }
 
                   /* else if (value.length < 6 || value.length > 20) {
