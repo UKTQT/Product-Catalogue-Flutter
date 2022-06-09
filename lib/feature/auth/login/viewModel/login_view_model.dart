@@ -4,5 +4,12 @@ import 'package:product_catalogue_flutter/feature/auth/login/service/login_servi
 class LoginViewModel extends ChangeNotifier {
   final LoginService _loginService = LoginService();
 
-  LoginViewModel() {}
+  //Validation
+  bool _checkBoxValue = false;
+  bool get checkBoxValue => _checkBoxValue;
+
+  void checkBoxChange(bool value) {
+    _checkBoxValue = value;
+    notifyListeners();
+  }
 }
