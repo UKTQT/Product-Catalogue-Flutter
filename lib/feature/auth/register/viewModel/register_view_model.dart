@@ -16,11 +16,19 @@ class RegisterViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool _checkBoxValue = false;
+  bool _passwordAgainVisiblility = true;
+  bool get passwordAgainVisiblility => _passwordAgainVisiblility;
+
+  void passAgainVisibilityChange() {
+    _passwordAgainVisiblility = !passwordAgainVisiblility;
+    notifyListeners();
+  }
+
+  /* bool _checkBoxValue = false;
   bool get checkBoxValue => _checkBoxValue;
 
   void checkBoxChange(bool value) {
     _checkBoxValue = value;
     notifyListeners();
-  }
+  } */
 }

@@ -249,12 +249,15 @@ class RegisterView extends StatelessWidget {
                     return 'Şifre 6 - 20 karakter olmalıdır.';
                   } else if (value.contains(' ')) {
                     return 'Boş karakter girilemez';
+                  } else if (!RegExp(r"^[a-zA-Z0-9_]*$").hasMatch(value)) {
+                    //Alfanumerik RegExp
+                    return 'Şifre sadece harf ve rakamlardan oluşmalıdır';
                   }
                   return null;
                 },
                 style: TextStyle(color: context.themeWhiteColor),
                 decoration: InputDecoration(
-                  labelText: AppConstant.instance!.PASS,
+                  labelText: 'Şifre',
                   labelStyle: TextStyle(color: context.themeWhite70Color),
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -287,30 +290,40 @@ class RegisterView extends StatelessWidget {
                 height: context.mediumHeightPadding,
               ),
               TextFormField(
-                controller: _passwordController,
+                controller: _passwordAgainController,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 obscureText:
-                    context.watch<RegisterViewModel>().passwordVisiblility,
+                    context.watch<RegisterViewModel>().passwordAgainVisiblility,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Şifre boş geçilemez.';
-                  } else if (value.length < 6 || value.length > 20) {
+                    return 'Şifre tekrar boş geçilemez.';
+                  } else if (value != _passwordController.text) {
+                    return 'Şifre ile aynı olmalıdır';
+                  }
+
+                  /* else if (value.length < 6 || value.length > 20) {
                     return 'Şifre 6 - 20 karakter olmalıdır.';
                   } else if (value.contains(' ')) {
                     return 'Boş karakter girilemez';
-                  }
+                  } else if (!RegExp(r"^[a-zA-Z0-9_]*$").hasMatch(value)) {
+                    //Alfanumerik RegExp
+                    return 'Şifre sadece harf ve rakamlardan oluşmalıdır';
+                  } */
                   return null;
                 },
                 style: TextStyle(color: context.themeWhiteColor),
                 decoration: InputDecoration(
-                  labelText: AppConstant.instance!.PASS,
+                  labelText: 'Şifre Tekrar',
                   labelStyle: TextStyle(color: context.themeWhite70Color),
                   suffixIcon: IconButton(
                     onPressed: () {
-                      context.read<RegisterViewModel>().passVisibilityChange();
+                      context
+                          .read<RegisterViewModel>()
+                          .passAgainVisibilityChange();
                     },
                     icon: context
                                 .watch<RegisterViewModel>()
-                                .passwordVisiblility ==
+                                .passwordAgainVisiblility ==
                             true
                         ? Icon(
                             Icons.visibility,
