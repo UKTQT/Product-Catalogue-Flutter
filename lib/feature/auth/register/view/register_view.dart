@@ -374,18 +374,17 @@ class RegisterView extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                         primary: context.themeWhiteColor),
                     child: Text(
-                      AppConstant.instance!.REGISTER,
+                      AppConstant.instance!.LOGIN,
                       style: TextStyle(color: context.themeMainColor2),
                     ),
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      print(_phoneController.text.length);
                       if (_formKey.currentState!.validate()) {}
                     },
                     style: ElevatedButton.styleFrom(
                         primary: context.themeMainColor1),
-                    child: Text(AppConstant.instance!.LOGIN),
+                    child: Text(AppConstant.instance!.REGISTER),
                   ),
                 ],
               )

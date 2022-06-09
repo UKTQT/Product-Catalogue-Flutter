@@ -98,15 +98,24 @@ class LoginView extends StatelessWidget {
             children: [
               TextFormField(
                 controller: _emailController,
+                maxLines: 1,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.emailAddress,
+                cursorColor: context.themeMainColor1,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Email boş geçilemez.';
+                    return 'E-Mail boş geçilemez.';
+                  } else if (!RegExp(
+                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      .hasMatch(value)) {
+                    return 'Geçerli bir email giriniz.';
                   }
                   return null;
                 },
                 style: TextStyle(color: context.themeWhiteColor),
                 decoration: InputDecoration(
-                  labelText: AppConstant.instance!.EMAIL,
+                  isDense: true,
+                  labelText: 'E-Mail',
                   labelStyle: TextStyle(color: context.themeWhite70Color),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
@@ -132,12 +141,15 @@ class LoginView extends StatelessWidget {
                     return 'Şifre 6 - 20 karakter olmalıdır.';
                   } else if (value.contains(' ')) {
                     return 'Boş karakter girilemez';
+                  } else if (!RegExp(r"^[a-zA-Z0-9_]*$").hasMatch(value)) {
+                    //Alfanumerik RegExp
+                    return 'Şifre sadece harf ve rakamlardan oluşmalıdır';
                   }
                   return null;
                 },
                 style: TextStyle(color: context.themeWhiteColor),
                 decoration: InputDecoration(
-                  labelText: AppConstant.instance!.PASS,
+                  labelText: 'Şifre',
                   labelStyle: TextStyle(color: context.themeWhite70Color),
                   suffixIcon: IconButton(
                     onPressed: () {
