@@ -36,9 +36,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: AppConstant.instance!.APP_TITLE,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(inputDecorationTheme: InputDecorationTheme()),
       onGenerateRoute: NavigationRoute.instance.generateRoute,
       navigatorKey: NavigationService.instance.navigatorKey,
     );

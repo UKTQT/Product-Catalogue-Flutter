@@ -86,9 +86,11 @@ class LoginView extends StatelessWidget {
                                     }
                                     return null;
                                   },
+                                  style: TextStyle(color: Colors.white),
                                   decoration: const InputDecoration(
                                     labelText: 'E-Mail',
-                                    labelStyle: TextStyle(color: Colors.white),
+                                    labelStyle:
+                                        TextStyle(color: Colors.white70),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           color: Colors.white, width: 1.0),
@@ -103,7 +105,8 @@ class LoginView extends StatelessWidget {
                                   height: context.mediumHeightPadding,
                                 ),
                                 TextFormField(
-                                  controller: _emailController,
+                                  controller: _passwordController,
+                                  obscureText: true,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Şifre boş geçilemez.';
@@ -113,9 +116,21 @@ class LoginView extends StatelessWidget {
                                     }
                                     return null;
                                   },
-                                  decoration: const InputDecoration(
+                                  style: TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
                                     labelText: 'Şifre',
-                                    labelStyle: TextStyle(color: Colors.white),
+                                    labelStyle:
+                                        TextStyle(color: Colors.white70),
+                                    /*  suffixIcon: Icon(
+                                      Icons.visibility,
+                                    ),
+                                    suffixIconColor: Colors.white, */
+                                    suffix: IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.visibility,
+                                          color: Colors.white,
+                                        )),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           color: Colors.white, width: 1.0),
@@ -154,8 +169,12 @@ class LoginView extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     ElevatedButton(
-                                      onPressed: () {},
-                                      child: Text('Giriş Yap'),
+                                      onPressed: () {
+                                        if (_formKey.currentState!.validate()) {
+                                          print('oldu');
+                                        }
+                                      },
+                                      child: const Text('Giriş Yap'),
                                       style: ElevatedButton.styleFrom(
                                           primary: context.themeMainColor1),
                                     ),
