@@ -106,13 +106,17 @@ class LoginView extends StatelessWidget {
                                 ),
                                 TextFormField(
                                   controller: _passwordController,
-                                  obscureText: true,
+                                  obscureText: context
+                                      .watch<LoginViewModel>()
+                                      .passwordVisiblility,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Şifre boş geçilemez.';
                                     } else if (value.length < 6 ||
                                         value.length > 20) {
                                       return 'Şifre 6 - 20 karakter olmalıdır.';
+                                    } else if (value.contains(' ')) {
+                                      return 'Boş karakter girilemez';
                                     }
                                     return null;
                                   },
@@ -121,16 +125,25 @@ class LoginView extends StatelessWidget {
                                     labelText: 'Şifre',
                                     labelStyle:
                                         TextStyle(color: Colors.white70),
-                                    /*  suffixIcon: Icon(
-                                      Icons.visibility,
+                                    suffixIcon: IconButton(
+                                      onPressed: () {
+                                        context
+                                            .read<LoginViewModel>()
+                                            .passVisibilityChange();
+                                      },
+                                      icon: context
+                                                  .watch<LoginViewModel>()
+                                                  .passwordVisiblility ==
+                                              true
+                                          ? Icon(
+                                              Icons.visibility,
+                                              color: Colors.white,
+                                            )
+                                          : Icon(
+                                              Icons.visibility_off,
+                                              color: Colors.white,
+                                            ),
                                     ),
-                                    suffixIconColor: Colors.white, */
-                                    suffix: IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.visibility,
-                                          color: Colors.white,
-                                        )),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           color: Colors.white, width: 1.0),

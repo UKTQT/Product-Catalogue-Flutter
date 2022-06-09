@@ -4,7 +4,15 @@ import 'package:product_catalogue_flutter/feature/auth/login/service/login_servi
 class LoginViewModel extends ChangeNotifier {
   final LoginService _loginService = LoginService();
 
-  //Validation
+  //Form Items
+  bool _passwordVisiblility = true;
+  bool get passwordVisiblility => _passwordVisiblility;
+
+  void passVisibilityChange() {
+    _passwordVisiblility = !passwordVisiblility;
+    notifyListeners();
+  }
+
   bool _checkBoxValue = false;
   bool get checkBoxValue => _checkBoxValue;
 
