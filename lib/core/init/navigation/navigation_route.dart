@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:product_catalogue_flutter/core/constants/navigation/navigation_constant.dart';
 import 'package:product_catalogue_flutter/feature/auth/login/view/login_view.dart';
+import 'package:product_catalogue_flutter/feature/auth/register/view/register_view.dart';
 
 import '../../../feature/auth/splash/view/splash_view.dart';
 
@@ -18,6 +19,9 @@ class NavigationRoute {
       case NavigationConstant.LOGIN:
         return normalNavigate(
             widget: LoginView(), pageName: NavigationConstant.LOGIN);
+      case NavigationConstant.REGISTER:
+        return normalNavigate(
+            widget: RegisterView(), pageName: NavigationConstant.REGISTER);
 
       default:
         return normalNavigate(
