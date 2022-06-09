@@ -41,7 +41,7 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.55,
+                    height: MediaQuery.of(context).size.height * 0.60,
                     width: double.maxFinite,
                     decoration: BoxDecoration(
                         color: context.themeMainColor2,
@@ -73,7 +73,7 @@ class LoginView extends StatelessWidget {
                                       .copyWith(color: Colors.white))
                             ],
                           ),
-                          SizedBox(height: context.veryHighHeightPadding),
+                          SizedBox(height: context.highHeightPadding2),
                           Form(
                             key: _formKey,
                             child: Column(
@@ -127,15 +127,15 @@ class LoginView extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: context.lowHeightPadding2,
+                                  height: context.lowHeightPadding,
                                 ),
                                 CheckboxListTile(
                                   value: context
                                       .watch<LoginViewModel>()
                                       .checkBoxValue,
-                                  title: Text('Beni Hatırla',
+                                  title: const Text('Beni Hatırla',
                                       style: TextStyle(color: Colors.white)),
-                                  subtitle: Text(
+                                  subtitle: const Text(
                                     'Sonraki girişinizde hatırlanacaksınız.',
                                     style: TextStyle(color: Colors.white),
                                   ),
@@ -145,8 +145,22 @@ class LoginView extends StatelessWidget {
                                         .checkBoxChange(value!);
                                   },
                                   activeColor: context.themeMainColor1,
-                                  side: BorderSide(color: Colors.white),
+                                  side: const BorderSide(color: Colors.white),
                                 ),
+                                SizedBox(
+                                  height: context.mediumHeightPadding,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {},
+                                      child: Text('Giriş Yap'),
+                                      style: ElevatedButton.styleFrom(
+                                          primary: context.themeMainColor1),
+                                    ),
+                                  ],
+                                )
                               ],
                             ),
                           ),
