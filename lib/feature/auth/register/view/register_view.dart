@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/constants/app/app_constant.dart';
+import '../../../../core/extensions/input_extension/input_extension.dart';
 import '../../../../core/extensions/padding_extension/padding_extension.dart';
 import '../../../../core/extensions/color_extension/color_extension.dart';
 import '../viewModel/register_view_model.dart';
@@ -33,7 +34,7 @@ class RegisterView extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   color: context.themeMainColor1,
                   width: double.maxFinite,
-                  height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.height, //max height
                   child: appLogo(context),
                 ),
                 Container(
@@ -101,14 +102,23 @@ class RegisterView extends StatelessWidget {
             children: [
               TextFormField(
                 controller: _nameController,
+                maxLines: 1,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.text,
+                cursorColor: context.themeMainColor1,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'İsim boş geçilemez.';
+                  } else if (value.contains(' ')) {
+                    return 'İsim boş karakter içeremez';
+                  } else if (value.length > 20) {
+                    return 'isim max 20 karakter olmalıdır';
                   }
                   return null;
                 },
                 style: TextStyle(color: context.themeWhiteColor),
                 decoration: InputDecoration(
+                  isDense: true,
                   labelText: 'Ad',
                   labelStyle: TextStyle(color: context.themeWhite70Color),
                   enabledBorder: OutlineInputBorder(
@@ -125,16 +135,25 @@ class RegisterView extends StatelessWidget {
                 height: context.mediumHeightPadding,
               ),
               TextFormField(
-                controller: _phoneController,
+                controller: _surNameController,
+                maxLines: 1,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.text,
+                cursorColor: context.themeMainColor1,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Soyad boş geçilemez.';
+                  } else if (value.contains(' ')) {
+                    return 'Soyad boş karakter içeremez';
+                  } else if (value.length > 20) {
+                    return 'Soyad max 20 karakter olmalıdır';
                   }
                   return null;
                 },
                 style: TextStyle(color: context.themeWhiteColor),
                 decoration: InputDecoration(
-                  labelText: 'Telefon',
+                  isDense: true,
+                  labelText: 'Soyad',
                   labelStyle: TextStyle(color: context.themeWhite70Color),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
@@ -150,16 +169,26 @@ class RegisterView extends StatelessWidget {
                 height: context.mediumHeightPadding,
               ),
               TextFormField(
-                controller: _surNameController,
+                controller: _phoneController,
+                maxLines: 1,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                inputFormatters: [PhoneNumberFormatter()], //(000) 000 00 00
+                cursorColor: context.themeMainColor1,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Soyad boş geçilemez.';
+                    return 'Telefon No boş geçilemez.';
+                  } else if (value.length < 14 || value.length > 14) {
+                    return 'Telefon No 10 karakter olmalıdır';
                   }
                   return null;
                 },
                 style: TextStyle(color: context.themeWhiteColor),
                 decoration: InputDecoration(
-                  labelText: 'Soyad',
+                  prefixText: '+90 ',
+                  prefixStyle: TextStyle(color: Colors.white),
+                  isDense: true,
+                  labelText: 'Telefon No (511 222 33 44)',
                   labelStyle: TextStyle(color: context.themeWhite70Color),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
@@ -295,7 +324,7 @@ class RegisterView extends StatelessWidget {
               SizedBox(
                 height: context.lowHeightPadding,
               ),
-              CheckboxListTile(
+              /*  CheckboxListTile(
                 value: context.watch<RegisterViewModel>().checkBoxValue,
                 title: Text(AppConstant.instance!.REMEMBER,
                     style: TextStyle(color: context.themeWhiteColor)),
@@ -311,7 +340,7 @@ class RegisterView extends StatelessWidget {
               ),
               SizedBox(
                 height: context.lowHeightPadding,
-              ),
+              ), */
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -326,6 +355,7 @@ class RegisterView extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
+                      print(_phoneController.text.length);
                       if (_formKey.currentState!.validate()) {}
                     },
                     style: ElevatedButton.styleFrom(
