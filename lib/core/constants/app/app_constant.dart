@@ -10,4 +10,14 @@ class AppConstant {
   //Main Constants
   final String APP_TITLE = 'Product Catalogue';
   final String APP_LOGO_PATH = 'assets/images/logo.jpg';
+
+  //Login View Constants
+  final String TITLE1 = 'Hoşgeldiniz';
+  final String TITLE2 = 'Lütfen bilgileriniz ile giriş yapınız.';
+  final String EMAIL = 'E-Mail';
+  final String PASS = 'Şifre';
+  final String REMEMBER = 'Beni Hatırla';
+  final String REMEMBER_SUB = 'Sonraki girişinizde hatırlanacaksınız.';
+  final String REGISTER = 'Kayıt Ol';
+  final String LOGIN = 'Giriş Yap';
 }

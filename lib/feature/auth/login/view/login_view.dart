@@ -45,7 +45,8 @@ class LoginView extends StatelessWidget {
                       horizontal: context.veryHighWidthPadding2,
                       vertical: context.mediumHeightPadding2,
                     ),
-                    child: loginFormItems(context),
+                    child:
+                        SingleChildScrollView(child: loginFormItems(context)),
                   ),
                 )
               ],
@@ -73,7 +74,7 @@ class LoginView extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text('Hoşgeldiniz',
+            Text(AppConstant.instance!.TITLE1,
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge!
@@ -82,7 +83,7 @@ class LoginView extends StatelessWidget {
         ),
         Row(
           children: [
-            Text('Lütfen bilgileriniz ile giriş yapınız',
+            Text(AppConstant.instance!.TITLE2,
                 style: Theme.of(context)
                     .textTheme
                     .titleSmall!
@@ -104,7 +105,7 @@ class LoginView extends StatelessWidget {
                 },
                 style: TextStyle(color: context.themeWhiteColor),
                 decoration: InputDecoration(
-                  labelText: 'E-Mail',
+                  labelText: AppConstant.instance!.EMAIL,
                   labelStyle: TextStyle(color: context.themeWhite70Color),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
@@ -135,7 +136,7 @@ class LoginView extends StatelessWidget {
                 },
                 style: TextStyle(color: context.themeWhiteColor),
                 decoration: InputDecoration(
-                  labelText: 'Şifre',
+                  labelText: AppConstant.instance!.PASS,
                   labelStyle: TextStyle(color: context.themeWhite70Color),
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -167,10 +168,10 @@ class LoginView extends StatelessWidget {
               ),
               CheckboxListTile(
                 value: context.watch<LoginViewModel>().checkBoxValue,
-                title: Text('Beni Hatırla',
+                title: Text(AppConstant.instance!.REMEMBER,
                     style: TextStyle(color: context.themeWhiteColor)),
                 subtitle: Text(
-                  'Sonraki girişinizde hatırlanacaksınız.',
+                  AppConstant.instance!.REMEMBER_SUB,
                   style: TextStyle(color: context.themeWhiteColor),
                 ),
                 onChanged: (value) {
@@ -183,15 +184,24 @@ class LoginView extends StatelessWidget {
                 height: context.lowHeightPadding,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                        primary: context.themeWhiteColor),
+                    child: Text(
+                      AppConstant.instance!.REGISTER,
+                      style: TextStyle(color: context.themeMainColor2),
+                    ),
+                  ),
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {}
                     },
                     style: ElevatedButton.styleFrom(
                         primary: context.themeMainColor1),
-                    child: const Text('Giriş Yap'),
+                    child: Text(AppConstant.instance!.LOGIN),
                   ),
                 ],
               )
