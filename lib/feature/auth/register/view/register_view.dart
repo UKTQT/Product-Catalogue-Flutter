@@ -186,7 +186,7 @@ class RegisterView extends StatelessWidget {
                 style: TextStyle(color: context.themeWhiteColor),
                 decoration: InputDecoration(
                   prefixText: '+90 ',
-                  prefixStyle: TextStyle(color: Colors.white),
+                  prefixStyle: const TextStyle(color: Colors.white),
                   isDense: true,
                   labelText: 'Telefon No (511 222 33 44)',
                   labelStyle: TextStyle(color: context.themeWhite70Color),
@@ -205,15 +205,25 @@ class RegisterView extends StatelessWidget {
               ),
               TextFormField(
                 controller: _emailController,
+                maxLines: 1,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.emailAddress,
+                cursorColor: context.themeMainColor1,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Email boş geçilemez.';
+                    return 'E-Mail boş geçilemez.';
+                  } else if (!RegExp(
+                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      .hasMatch(value)) {
+                    return 'Geçerli bir email giriniz.';
                   }
                   return null;
                 },
                 style: TextStyle(color: context.themeWhiteColor),
                 decoration: InputDecoration(
-                  labelText: AppConstant.instance!.EMAIL,
+                  isDense: true,
+                  labelText: 'E-Mail',
                   labelStyle: TextStyle(color: context.themeWhite70Color),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
@@ -229,7 +239,7 @@ class RegisterView extends StatelessWidget {
                 height: context.mediumHeightPadding,
               ),
               TextFormField(
-                controller: _passwordAgainController,
+                controller: _passwordController,
                 obscureText:
                     context.watch<RegisterViewModel>().passwordVisiblility,
                 validator: (value) {
