@@ -12,6 +12,7 @@ class RegisterView extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _surNameController = TextEditingController();
+  final _phoneController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _passwordAgainController = TextEditingController();
@@ -36,7 +37,7 @@ class RegisterView extends StatelessWidget {
                   child: appLogo(context),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.85,
                   width: double.maxFinite,
                   decoration: BoxDecoration(
                       color: context.themeMainColor2,
@@ -64,7 +65,7 @@ class RegisterView extends StatelessWidget {
     return Hero(
       tag: 'app_logo',
       child: Image(
-        width: MediaQuery.of(context).size.width * 0.98,
+        width: MediaQuery.of(context).size.width * 0.30,
         image: AssetImage(
           AppConstant.instance!.APP_LOGO_PATH,
         ),
@@ -109,6 +110,31 @@ class RegisterView extends StatelessWidget {
                 style: TextStyle(color: context.themeWhiteColor),
                 decoration: InputDecoration(
                   labelText: 'Ad',
+                  labelStyle: TextStyle(color: context.themeWhite70Color),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: context.themeWhiteColor, width: 1.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: context.themeWhiteColor, width: 2.0),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: context.mediumHeightPadding,
+              ),
+              TextFormField(
+                controller: _phoneController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Soyad boş geçilemez.';
+                  }
+                  return null;
+                },
+                style: TextStyle(color: context.themeWhiteColor),
+                decoration: InputDecoration(
+                  labelText: 'Telefon',
                   labelStyle: TextStyle(color: context.themeWhite70Color),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
