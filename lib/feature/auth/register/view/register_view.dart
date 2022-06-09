@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:product_catalogue_flutter/feature/auth/register/service/register_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/constants/app/app_constant.dart';
@@ -348,25 +349,8 @@ class RegisterView extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: context.lowHeightPadding,
+                height: context.mediumHeightPadding,
               ),
-              /*  CheckboxListTile(
-                value: context.watch<RegisterViewModel>().checkBoxValue,
-                title: Text(AppConstant.instance!.REMEMBER,
-                    style: TextStyle(color: context.themeWhiteColor)),
-                subtitle: Text(
-                  AppConstant.instance!.REMEMBER_SUB,
-                  style: TextStyle(color: context.themeWhiteColor),
-                ),
-                onChanged: (value) {
-                  context.read<RegisterViewModel>().checkBoxChange(value!);
-                },
-                activeColor: context.themeMainColor1,
-                side: BorderSide(color: context.themeWhiteColor),
-              ),
-              SizedBox(
-                height: context.lowHeightPadding,
-              ), */
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -384,7 +368,11 @@ class RegisterView extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                      context.read<RegisterViewModel>().postRegisterVm(
+                          name_: _nameController.text,
+                          password_: _passwordController.text,
+                          email_: _emailController.text);
+                      // if (_formKey.currentState!.validate()) {}
                     },
                     style: ElevatedButton.styleFrom(
                         primary: context.themeMainColor1),

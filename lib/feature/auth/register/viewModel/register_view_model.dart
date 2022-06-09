@@ -1,7 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 
+import '../model/register_model.dart';
 import '../service/register_service.dart';
 
 class RegisterViewModel extends ChangeNotifier {
@@ -24,11 +26,17 @@ class RegisterViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /* bool _checkBoxValue = false;
-  bool get checkBoxValue => _checkBoxValue;
+  //Register Post
+  dynamic responseVm = [];
 
-  void checkBoxChange(bool value) {
-    _checkBoxValue = value;
+  dynamic postRegisterVm(
+      {required String name_,
+      required String password_,
+      required String email_}) async {
+    responseVm = await _registerService.postRegister(
+        name: name_, password: password_, email: email_);
+    print(responseVm);
+
     notifyListeners();
-  } */
+  }
 }
