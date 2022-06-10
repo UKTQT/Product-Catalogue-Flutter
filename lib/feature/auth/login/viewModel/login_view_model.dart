@@ -27,7 +27,7 @@ class LoginViewModel extends ChangeNotifier {
   LoginModel? responseVm;
   bool? loginStatus;
 
-  Future postRegisterVm(
+  Future postLoginVm(
       {required String password_, required String email_}) async {
     responseVm =
         await _loginService.postLogin(password: password_, email: email_);
