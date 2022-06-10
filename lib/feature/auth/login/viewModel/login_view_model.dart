@@ -50,8 +50,9 @@ class LoginViewModel extends ChangeNotifier {
       //if not registered
       sharedPreferences.setStringList(email, [token, email, password]);
     }
-
-    print(sharedPreferences.getStringList(email));
+    if (!sharedPreferences.containsKey('token')) {
+      sharedPreferences.setString('token', token);
+    } else {}
   }
 
   void loginDeleteSharedPrefences({required String email}) async {
@@ -60,7 +61,5 @@ class LoginViewModel extends ChangeNotifier {
     if (sharedPreferences.containsKey(email)) {
       sharedPreferences.remove(email);
     }
-
-    print(sharedPreferences.getStringList(email));
   }
 }

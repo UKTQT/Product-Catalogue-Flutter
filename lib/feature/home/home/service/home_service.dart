@@ -1,0 +1,37 @@
+import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../model/product_model.dart';
+
+enum HomeServiceEnum { all }
+
+abstract class IHomeService {
+  Future<List<Products>?> fetchAllProducts();
+}
+
+class HomeService extends IHomeService {
+  late final Dio _dio;
+
+  HomeService() {
+    _dio = Dio(
+      BaseOptions(
+          baseUrl: 'https://assignment-api.piton.com.tr/api/v1/product'),
+    );
+  }
+
+  @override
+  Future<List<Products>?> fetchAllProducts() async {
+    var sharedPreferences = await SharedPreferences.getInstance();
+
+    try {
+      final response = _dio.get(
+        HomeServiceEnum.all.name,
+        queryParameters: {
+          'access-token': sharedPreferences.getString('token'),
+        },
+      );
+    } on DioError catch (e) {}
+    return null;
+  }
+}
