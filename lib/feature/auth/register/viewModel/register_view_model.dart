@@ -28,13 +28,12 @@ class RegisterViewModel extends ChangeNotifier {
 
   //Register Post
 
-  Future<RegisterModel?> postRegisterVm(
+  Future<void> postRegisterVm(
       {required String name_,
       required String password_,
       required String email_}) async {
     final responseVm = await _registerService.postRegister(
         name: name_, password: password_, email: email_);
-    print(responseVm?.token);
 
     notifyListeners();
   }

@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 
 import '../model/register_model.dart';
 
+enum RegisterServiceEnum { register }
+
 abstract class IRegisterService {
   Future<RegisterModel?> postRegister({
     required String name,
@@ -28,15 +30,15 @@ class RegisterService extends IRegisterService {
       required String password,
       required String email}) async {
     try {
-      final response = await _dio.post('register',
+      final response = await _dio.post(RegisterServiceEnum.register.name,
           data: {'name': name, 'password': password, 'email': email});
       if (response.statusCode == HttpStatus.ok) {
-        final _datas = response.data;
+        final datas = response.data;
 
-        return RegisterModel.fromJson(_datas);
+        return RegisterModel.fromJson(datas);
       }
     } on DioError catch (e) {
-      return null;
+      //
     }
     return null;
   }
