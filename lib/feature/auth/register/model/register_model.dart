@@ -1,22 +1,15 @@
-import 'dart:convert';
-
 class RegisterModel {
-  RegisterModel({
-    this.token,
-  });
+  String? token;
 
-  final String? token;
+  RegisterModel({this.token});
 
-  factory RegisterModel.fromJson(String str) =>
-      RegisterModel.fromMap(json.decode(str));
+  RegisterModel.fromJson(Map<String, dynamic> json) {
+    token = json['token'];
+  }
 
-  String toJson() => json.encode(toMap());
-
-  factory RegisterModel.fromMap(Map<String, dynamic> json) => RegisterModel(
-        token: json["token"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "token": token,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['token'] = this.token;
+    return data;
+  }
 }

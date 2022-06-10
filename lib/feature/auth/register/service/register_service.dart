@@ -1,7 +1,7 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:product_catalogue_flutter/feature/auth/register/model/register_model.dart';
+
+import '../model/register_model.dart';
 
 abstract class IRegisterService {
   Future<RegisterModel?> postRegister({
@@ -13,6 +13,7 @@ abstract class IRegisterService {
 
 class RegisterService extends IRegisterService {
   late final Dio _dio;
+
   RegisterService() {
     _dio = Dio(
       BaseOptions(
@@ -32,12 +33,11 @@ class RegisterService extends IRegisterService {
       if (response.statusCode == HttpStatus.ok) {
         final _datas = response.data;
 
-        if (_datas is Map<String, dynamic>) {
-          return RegisterModel.fromMap(_datas['token']);
-        }
+        return RegisterModel.fromJson(_datas);
       }
     } on DioError catch (e) {
       return null;
     }
+    return null;
   }
 }
