@@ -40,12 +40,26 @@ class LoginViewModel extends ChangeNotifier {
   }
 
   //Login Shared Preferences
-  void loginSharedPrefences(
+  void loginSaveSharedPrefences(
       {required String token,
       required String email,
       required String password}) async {
     var sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setStringList(email, [token, email, password]);
+
+    if (!sharedPreferences.containsKey(email)) {
+      //if not registered
+      sharedPreferences.setStringList(email, [token, email, password]);
+    }
+
+    print(sharedPreferences.getStringList(email));
+  }
+
+  void loginDeleteSharedPrefences({required String email}) async {
+    var sharedPreferences = await SharedPreferences.getInstance();
+
+    if (sharedPreferences.containsKey(email)) {
+      sharedPreferences.remove(email);
+    }
 
     print(sharedPreferences.getStringList(email));
   }

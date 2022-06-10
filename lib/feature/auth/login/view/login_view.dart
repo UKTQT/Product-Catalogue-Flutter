@@ -229,7 +229,7 @@ class LoginView extends StatelessWidget {
                                   .checkBoxValue) {
                                 context
                                     .read<LoginViewModel>()
-                                    .loginSharedPrefences(
+                                    .loginSaveSharedPrefences(
                                         email: _emailController.text,
                                         password: _passwordController.text,
                                         token: context
@@ -237,6 +237,13 @@ class LoginView extends StatelessWidget {
                                             .responseVm!
                                             .token
                                             .toString());
+                              } else if (!context
+                                  .read<LoginViewModel>()
+                                  .checkBoxValue) {
+                                context
+                                    .read<LoginViewModel>()
+                                    .loginDeleteSharedPrefences(
+                                        email: _emailController.text);
                               }
                             }
                           },
