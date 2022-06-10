@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:product_catalogue_flutter/feature/auth/register/service/register_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/constants/app/app_constant.dart';
@@ -23,34 +22,6 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> showMyDialog() async {
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: false, // user must tap button!
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('AlertDialog Title'),
-            content: SingleChildScrollView(
-              child: ListBody(
-                children: const <Widget>[
-                  Text('This is a demo alert dialog.'),
-                  Text('Would you like to approve of this message?'),
-                ],
-              ),
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('Approve'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
-
     return ChangeNotifierProvider<RegisterViewModel>(
       lazy: false,
       create: (context) => RegisterViewModel(),
@@ -215,11 +186,11 @@ class RegisterView extends StatelessWidget {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Telefon No boş geçilemez.';
-                  } else if (value.length < 14 || value.length > 14) {
+                  } else if (value.length < 15 || value.length > 15) {
                     return 'Telefon No 10 karakter olmalıdır';
-                  } else if (!RegExp(r"^[0-9]+$").hasMatch(value)) {
+                  } /* else if (!RegExp(r"^[0-9]+$").hasMatch(value)) {
                     return 'Telefon No sadece rakamlardan oluşabilir';
-                  }
+                  } */
                   return null;
                 },
                 style: TextStyle(color: context.themeWhiteColor),
@@ -396,20 +367,19 @@ class RegisterView extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      context
-                          .read<RegisterViewModel>()
-                          .postRegisterVm(
-                              name_: _nameController.text,
-                              password_: _passwordController.text,
-                              email_: _emailController.text)
-                          .then((value) => value
-                              ? context
-                                  .read<RegisterViewModel>()
-                                  .registerShowDialog(context: context)
-                              : null);
-                      /* if (_formKey.currentState!.validate()) {
-                        
-                      } */
+                      if (_formKey.currentState!.validate()) {
+                        context
+                            .read<RegisterViewModel>()
+                            .postRegisterVm(
+                                name_: _nameController.text,
+                                password_: _passwordController.text,
+                                email_: _emailController.text)
+                            .then((value) => value
+                                ? context
+                                    .read<RegisterViewModel>()
+                                    .registerShowDialog(context: context)
+                                : null);
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                         primary: context.themeMainColor1),

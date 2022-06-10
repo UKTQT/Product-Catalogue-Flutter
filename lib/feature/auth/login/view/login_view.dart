@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:product_catalogue_flutter/core/constants/navigation/navigation_constant.dart';
-import 'package:product_catalogue_flutter/feature/auth/login/viewModel/login_view_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/constants/navigation/navigation_constant.dart';
 import '../../../../core/constants/app/app_constant.dart';
 import '../../../../core/extensions/padding_extension/padding_extension.dart';
 import '../../../../core/extensions/color_extension/color_extension.dart';
+import '../viewModel/login_view_model.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({Key? key}) : super(key: key);

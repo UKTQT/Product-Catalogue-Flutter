@@ -1,9 +1,6 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
-import 'package:product_catalogue_flutter/core/components/register/register_show_dialog.dart';
 
+import '../../../../core/components/register/register_show_dialog.dart';
 import '../../../../core/base/viewModel/base_view_model.dart';
 import '../../../../core/constants/navigation/navigation_constant.dart';
 import '../model/register_model.dart';
