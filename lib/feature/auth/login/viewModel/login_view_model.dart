@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:product_catalogue_flutter/feature/auth/login/model/login_model.dart';
 
 import '../service/login_service.dart';
 
@@ -19,6 +20,21 @@ class LoginViewModel extends ChangeNotifier {
 
   void checkBoxChange(bool value) {
     _checkBoxValue = value;
+    notifyListeners();
+  }
+
+  //Login Post
+  LoginModel? responseVm;
+  bool? loginStatus;
+
+  Future postRegisterVm(
+      {required String password_, required String email_}) async {
+    responseVm =
+        await _loginService.postLogin(password: password_, email: email_);
+
+    if (responseVm!.token!.isNotEmpty || responseVm!.token != null) {
+      return loginStatus = true;
+    }
     notifyListeners();
   }
 }

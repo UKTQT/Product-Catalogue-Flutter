@@ -311,7 +311,6 @@ class RegisterView extends StatelessWidget {
                       return 'Şifre ile aynı olmalıdır';
                     }
                   }
-
                   return null;
                 },
                 style: TextStyle(color: context.themeWhiteColor),

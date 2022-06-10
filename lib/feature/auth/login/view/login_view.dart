@@ -213,7 +213,20 @@ class LoginView extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                        print('w');
+                        /*    context
+                            .read<RegisterViewModel>()
+                            .postRegisterVm(
+                                name_: _nameController.text,
+                                password_: _passwordController.text,
+                                email_: _emailController.text)
+                            .then((value) => value
+                                ? context
+                                    .read<RegisterViewModel>()
+                                    .registerShowDialog(context: context)
+                                : null); */
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                         primary: context.themeMainColor1),
