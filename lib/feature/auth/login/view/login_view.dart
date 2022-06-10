@@ -217,11 +217,30 @@ class LoginView extends StatelessWidget {
                         context
                             .read<LoginViewModel>()
                             .postLoginVm(
+                                //login function works
                                 password_: _passwordController.text,
                                 email_: _emailController.text)
-                            .then((value) =>
-                                value ? print('login başarılı') : null);
-                        ;
+                            .then(
+                          (value) {
+                            if (value) {
+                              //If login is successful, checkbox is checked and cached.
+                              if (context
+                                  .read<LoginViewModel>()
+                                  .checkBoxValue) {
+                                context
+                                    .read<LoginViewModel>()
+                                    .loginSharedPrefences(
+                                        email: _emailController.text,
+                                        password: _passwordController.text,
+                                        token: context
+                                            .read<LoginViewModel>()
+                                            .responseVm!
+                                            .token
+                                            .toString());
+                              }
+                            }
+                          },
+                        );
                       }
                     },
                     style: ElevatedButton.styleFrom(

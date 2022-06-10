@@ -31,7 +31,6 @@ class LoginService extends ILoginService {
           data: {'password': password, 'email': email});
       if (response.statusCode == HttpStatus.ok) {
         final datas = response.data;
-        print(datas);
 
         return LoginModel.fromJson(datas);
       }
