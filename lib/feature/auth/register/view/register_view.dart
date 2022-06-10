@@ -153,8 +153,8 @@ class RegisterView extends StatelessWidget {
                     return 'Soyad boş karakter içeremez';
                   } else if (value.length > 20 || value.length < 2) {
                     return 'Soyad max 20 karakter olmalıdır';
-                  } else if (!RegExp(r"^[a-zA-Z0-9_]*$").hasMatch(value)) {
-                    return 'Soyad sadece harf ve rakamlardan oluşabilir';
+                  } else if (!RegExp(r"^[a-zA-Z]+$").hasMatch(value)) {
+                    return 'Soyad sadece harflerden oluşabilir';
                   }
                   return null;
                 },
