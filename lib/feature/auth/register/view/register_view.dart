@@ -23,6 +23,34 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> showMyDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('AlertDialog Title'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: const <Widget>[
+                  Text('This is a demo alert dialog.'),
+                  Text('Would you like to approve of this message?'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Approve'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return ChangeNotifierProvider<RegisterViewModel>(
       lazy: false,
       create: (context) => RegisterViewModel(),
@@ -368,11 +396,20 @@ class RegisterView extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      context.read<RegisterViewModel>().postRegisterVm(
-                          name_: _nameController.text,
-                          password_: _passwordController.text,
-                          email_: _emailController.text);
-                      // if (_formKey.currentState!.validate()) {}
+                      context
+                          .read<RegisterViewModel>()
+                          .postRegisterVm(
+                              name_: _nameController.text,
+                              password_: _passwordController.text,
+                              email_: _emailController.text)
+                          .then((value) => value
+                              ? context
+                                  .read<RegisterViewModel>()
+                                  .registerShowDialog(context: context)
+                              : null);
+                      /* if (_formKey.currentState!.validate()) {
+                        
+                      } */
                     },
                     style: ElevatedButton.styleFrom(
                         primary: context.themeMainColor1),
