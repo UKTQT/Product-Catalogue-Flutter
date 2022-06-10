@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:product_catalogue_flutter/feature/home/home/service/home_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/constants/app/app_constant.dart';
@@ -11,6 +12,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    HomeService _homeservice = HomeService();
     return ChangeNotifierProvider<HomeViewModel>(
       lazy: false,
       create: (context) => HomeViewModel(),
@@ -69,7 +71,9 @@ class HomeView extends StatelessWidget {
                                 subtitle: const Text(
                                     'DescriptionDescriptionDescription'),
                                 trailing: IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    _homeservice.fetchAllProducts();
+                                  },
                                   icon: const Icon(Icons.favorite),
                                 ),
                               ),

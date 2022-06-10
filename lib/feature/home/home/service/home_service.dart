@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,7 +9,7 @@ import '../model/product_model.dart';
 enum HomeServiceEnum { all }
 
 abstract class IHomeService {
-  Future<List<Products>?> fetchAllProducts();
+  Future<ProductModel?> fetchAllProducts();
 }
 
 class HomeService extends IHomeService {
@@ -21,16 +23,22 @@ class HomeService extends IHomeService {
   }
 
   @override
-  Future<List<Products>?> fetchAllProducts() async {
+  Future<ProductModel?> fetchAllProducts() async {
     var sharedPreferences = await SharedPreferences.getInstance();
 
     try {
-      final response = _dio.get(
+      final response = await _dio.get(
         HomeServiceEnum.all.name,
         queryParameters: {
           'access-token': sharedPreferences.getString('token'),
         },
       );
+      print(response);
+      if (response.statusCode == HttpStatus.ok) {
+        final datas = response.data;
+
+        return ProductModel.fromJson(datas);
+      }
     } on DioError catch (e) {}
     return null;
   }

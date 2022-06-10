@@ -1,107 +1,112 @@
+// To parse this JSON data, do
+//
+//     final productModel = productModelFromMap(jsonString);
+
+import 'dart:convert';
+
+/* class ProductModel {
+  ProductModel({
+    this.products,
+  });
+
+  final List<Product>? products;
+
+  factory ProductModel.fromJson(String str) =>
+      ProductModel.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ProductModel.fromMap(Map<String, dynamic> json) => ProductModel(
+        products:
+            List<Product>.from(json["products"].map((x) => Product.fromMap(x))),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "products": List<dynamic>.from(products!.map((x) => x.toMap())),
+      };
+} */
+
 class ProductModel {
-  List<Products>? products;
+  ProductModel({
+    this.id,
+    this.name,
+    this.price,
+    this.image,
+    this.description,
+    this.timeStamp,
+    this.likes,
+  });
 
-  ProductModel({this.products});
+  final int? id;
+  final String? name;
+  final int? price;
+  final String? image;
+  final String? description;
+  final DateTime? timeStamp;
+  final List<Like>? likes;
 
-  ProductModel.fromJson(Map<String, dynamic> json) {
-    if (json['products'] != null) {
-      products = <Products>[];
-      json['products'].forEach((v) {
-        products!.add(Products.fromJson(v));
-      });
-    }
-  }
+  factory ProductModel.fromJson(String str) =>
+      ProductModel.fromMap(json.decode(str));
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (this.products != null) {
-      data['products'] = this.products!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+  String toJson() => json.encode(toMap());
+
+  factory ProductModel.fromMap(Map<String, dynamic> json) => ProductModel(
+        id: json["id"],
+        name: json["name"],
+        price: json["price"],
+        image: json["image"],
+        description: json["description"],
+        timeStamp: DateTime.parse(json["timeStamp"]),
+        likes: List<Like>.from(json["likes"].map((x) => Like.fromMap(x))),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "name": name,
+        "price": price,
+        "image": image,
+        "description": description,
+        "timeStamp": timeStamp!.toIso8601String(),
+        "likes": List<dynamic>.from(likes!.map((x) => x.toMap())),
+      };
 }
 
-class Products {
-  int? id;
-  String? name;
-  int? price;
-  String? image;
-  String? description;
-  String? timeStamp;
-  List<Likes>? likes;
+class Like {
+  Like({
+    this.id,
+    this.email,
+    this.password,
+    this.name,
+    this.token,
+    this.timeStamp,
+  });
 
-  Products(
-      {this.id,
-      this.name,
-      this.price,
-      this.image,
-      this.description,
-      this.timeStamp,
-      this.likes});
+  final int? id;
+  final String? email;
+  final String? password;
+  final String? name;
+  final String? token;
+  final int? timeStamp;
 
-  Products.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    price = json['price'];
-    image = json['image'];
-    description = json['description'];
-    timeStamp = json['timeStamp'];
-    if (json['likes'] != null) {
-      likes = <Likes>[];
-      json['likes'].forEach((v) {
-        likes!.add(Likes.fromJson(v));
-      });
-    }
-  }
+  factory Like.fromJson(String str) => Like.fromMap(json.decode(str));
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['price'] = this.price;
-    data['image'] = this.image;
-    data['description'] = this.description;
-    data['timeStamp'] = this.timeStamp;
-    if (this.likes != null) {
-      data['likes'] = this.likes!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
+  String toJson() => json.encode(toMap());
 
-class Likes {
-  int? id;
-  String? email;
-  String? password;
-  String? name;
-  String? token;
-  int? timeStamp;
+  factory Like.fromMap(Map<String, dynamic> json) => Like(
+        id: json["id"],
+        email: json["email"],
+        password: json["password"],
+        name: json["name"],
+        token: json["token"],
+        timeStamp: json["timeStamp"],
+      );
 
-  Likes(
-      {this.id,
-      this.email,
-      this.password,
-      this.name,
-      this.token,
-      this.timeStamp});
-
-  Likes.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    email = json['email'];
-    password = json['password'];
-    name = json['name'];
-    token = json['token'];
-    timeStamp = json['timeStamp'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['email'] = this.email;
-    data['password'] = this.password;
-    data['name'] = this.name;
-    data['token'] = this.token;
-    data['timeStamp'] = this.timeStamp;
-    return data;
-  }
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "email": email,
+        "password": password,
+        "name": name,
+        "token": token,
+        "timeStamp": timeStamp,
+      };
 }
