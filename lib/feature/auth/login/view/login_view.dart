@@ -201,8 +201,10 @@ class LoginView extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamedAndRemoveUntil(context,
-                          NavigationConstant.REGISTER, (route) => false);
+                      /*    Navigator.pushNamedAndRemoveUntil(context,
+                          NavigationConstant.REGISTER, (route) => false); */
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, NavigationConstant.HOME, (route) => false);
                     },
                     style: ElevatedButton.styleFrom(
                         primary: context.themeWhiteColor),
