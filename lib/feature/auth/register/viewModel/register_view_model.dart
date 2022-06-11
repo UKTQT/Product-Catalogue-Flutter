@@ -45,10 +45,9 @@ class RegisterViewModel extends ChangeNotifier with BaseViewModel {
 
   void registerShowDialog({required BuildContext context}) {
     //If the registration is successful, the alert dialog will be displayed and the login view will be sent after 2 seconds.
-    showMyDialog(context: context);
+    registerSuccesfull(context: context);
     Future.delayed(const Duration(seconds: 2), () {
-      navigationServicePoint.navigateToPageClear(
-          path: NavigationConstant.LOGIN);
+      navigationServicePoint.navigateToPageClear(path: NavigationConstant.HOME);
     });
   }
 }
