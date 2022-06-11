@@ -73,7 +73,40 @@ class HomeView extends StatelessWidget {
                           child: GestureDetector(
                             onTap: () {
                               Navigator.pushNamed(
-                                  context, NavigationConstant.PRODUCT);
+                                  context, NavigationConstant.PRODUCT,
+                                  arguments: {
+                                    'productId': context
+                                        .read<HomeViewModel>()
+                                        .productItems!
+                                        .elementAt(index)
+                                        .id
+                                        .toString(),
+                                    'productName': context
+                                        .read<HomeViewModel>()
+                                        .productItems!
+                                        .elementAt(index)
+                                        .name,
+                                    'productPrice': context
+                                        .read<HomeViewModel>()
+                                        .productItems!
+                                        .elementAt(index)
+                                        .price,
+                                    'productImage': context
+                                        .read<HomeViewModel>()
+                                        .productItems!
+                                        .elementAt(index)
+                                        .image,
+                                    'productDesc': context
+                                        .read<HomeViewModel>()
+                                        .productItems!
+                                        .elementAt(index)
+                                        .description,
+                                    'productTime': context
+                                        .read<HomeViewModel>()
+                                        .productItems!
+                                        .elementAt(index)
+                                        .timeStamp
+                                  });
                             },
                             child: Card(
                               elevation: 5,

@@ -12,6 +12,7 @@ class ProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as Map;
     return ChangeNotifierProvider<ProductViewModel>(
       lazy: false,
       create: (context) => ProductViewModel(),
@@ -40,7 +41,7 @@ class ProductView extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       child: FittedBox(
                         fit: BoxFit.fill,
-                        child: const Image(
+                        child: Image(
                           image: NetworkImage(
                               'https://assignment-api.piton.com.tr/static/1.jpeg'),
                         ),
@@ -95,7 +96,7 @@ class ProductView extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       flex: 9,
-                                      child: Text('Başlık',
+                                      child: Text(args['productName'] ?? '',
                                           overflow: TextOverflow.clip,
                                           style: Theme.of(context)
                                               .textTheme
@@ -117,29 +118,33 @@ class ProductView extends StatelessWidget {
                                 SizedBox(height: context.highHeightPadding),
                                 Row(children: [
                                   Expanded(
-                                      child: Text('tarih',
+                                      child: Text(args['productTime'] ?? '',
                                           style: Theme.of(context)
                                               .textTheme
                                               .subtitle1
                                               ?.copyWith(color: Colors.black))),
                                   Expanded(
                                     flex: 0,
-                                    child: Text('59 tl',
+                                    child: Text('${args['productPrice']} tl',
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle2),
                                   )
                                 ]),
                                 SizedBox(height: context.mediumHeightPadding),
-                                Row(children: [
-                                  Text('Aöıklama',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline6
-                                          ?.copyWith(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black))
-                                ]),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(args['productDesc'] ?? '',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline6
+                                              ?.copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black)),
+                                    ),
+                                  ],
+                                ),
                                 SizedBox(height: context.lowHeightPadding2),
                               ],
                             ),

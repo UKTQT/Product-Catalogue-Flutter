@@ -28,8 +28,10 @@ class NavigationRoute {
         return normalNavigate(
             widget: const HomeView(), pageName: NavigationConstant.HOME);
       case NavigationConstant.PRODUCT:
-        return normalNavigate(
-            widget: const ProductView(), pageName: NavigationConstant.PRODUCT);
+        return argsNavigate(
+            widget: const ProductView(),
+            pageName: NavigationConstant.PRODUCT,
+            navigateArguments: path.arguments);
 
       default:
         return normalNavigate(
@@ -43,5 +45,15 @@ MaterialPageRoute normalNavigate(
   return MaterialPageRoute(
     builder: (context) => widget,
     settings: RouteSettings(name: pageName),
+  );
+}
+
+MaterialPageRoute argsNavigate(
+    {required Widget widget,
+    required String pageName,
+    dynamic navigateArguments}) {
+  return MaterialPageRoute(
+    builder: (context) => widget,
+    settings: RouteSettings(name: pageName, arguments: navigateArguments),
   );
 }
