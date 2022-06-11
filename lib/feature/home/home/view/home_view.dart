@@ -72,7 +72,10 @@ class HomeView extends StatelessWidget {
                                     'DescriptionDescriptionDescription'),
                                 trailing: IconButton(
                                   onPressed: () {
-                                    _homeservice.fetchAllProducts();
+                                    /*  _homeservice.fetchAllProducts(); */
+                                    context
+                                        .read<HomeViewModel>()
+                                        .fetchAllProducts();
                                   },
                                   icon: const Icon(Icons.favorite),
                                 ),

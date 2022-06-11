@@ -9,7 +9,7 @@ import '../model/product_model.dart';
 enum HomeServiceEnum { all }
 
 abstract class IHomeService {
-  Future<ProductModel?> fetchAllProducts();
+  Future<ProductModel?> fetchAllProducts({required String token});
 }
 
 class HomeService extends IHomeService {
@@ -23,23 +23,21 @@ class HomeService extends IHomeService {
   }
 
   @override
-  Future<ProductModel?> fetchAllProducts() async {
-    var sharedPreferences = await SharedPreferences.getInstance();
-
+  Future<ProductModel?> fetchAllProducts({String? token}) async {
     try {
       final response = await _dio.get(
         HomeServiceEnum.all.name,
         options: Options(
           headers: {
-            'access-token': sharedPreferences.getString('token'),
+            'access-token': token,
           },
         ),
       );
 
       if (response.statusCode == HttpStatus.ok) {
         final datas = response.data;
-
-        return ProductModel.fromJson(datas);
+        print(datas);
+        // return ProductModel.fromMap(datas);
       }
     } on DioError catch (e) {}
     return null;
