@@ -18,5 +18,6 @@ class HomeViewModel extends ChangeNotifier {
     String? token = sharedPreferences.getString('token');
 
     productItems = await _homeService.fetchAllProducts(token: token);
+    notifyListeners();
   }
 }
