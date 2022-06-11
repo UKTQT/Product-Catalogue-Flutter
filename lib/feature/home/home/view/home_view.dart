@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/constants/app/app_constant.dart';
 import '../../../../core/extensions/color_extension/color_extension.dart';
 import '../../../../core/extensions/padding_extension/padding_extension.dart';
+import '../../../../core/init/cache/cache.dart';
 import '../viewModel/home_view_model.dart';
 
 class HomeView extends StatelessWidget {
@@ -95,11 +97,27 @@ class HomeView extends StatelessWidget {
                                 trailing: IconButton(
                                   onPressed: () {
                                     context
-                                        .watch<HomeViewModel>()
-                                        .fetchAllProducts();
-                                    //_homeservice.fetchAllProducts();
+                                        .read<HomeViewModel>()
+                                        .postProductLike(
+                                            productId: context
+                                                .read<HomeViewModel>()
+                                                .productItems!
+                                                .elementAt(index)
+                                                .id);
                                   },
-                                  icon: const Icon(Icons.favorite),
+                                  icon: context
+                                              .watch<HomeViewModel>()
+                                              .cache
+                                              .preferences!
+                                              .getBool(context
+                                                  .read<HomeViewModel>()
+                                                  .productItems!
+                                                  .elementAt(index)
+                                                  .id
+                                                  .toString()) ==
+                                          true
+                                      ? Icon(Icons.favorite)
+                                      : Text('ewqeq'),
                                 ),
                               ),
                             ),
