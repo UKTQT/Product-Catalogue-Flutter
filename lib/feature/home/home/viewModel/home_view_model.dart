@@ -7,6 +7,9 @@ import '../model/product_model.dart';
 class HomeViewModel extends ChangeNotifier {
   final HomeService _homeService = HomeService();
 
+  HomeViewModel() {
+    fetchAllProducts();
+  }
   //Product get
   List<Products>? productItems = [];
 

@@ -37,9 +37,7 @@ class RegisterService extends IRegisterService {
 
         return RegisterModel.fromJson(datas);
       }
-    } on DioError catch (e) {
-      //
-    }
+    } on DioError catch (e) {}
     return null;
   }
 }

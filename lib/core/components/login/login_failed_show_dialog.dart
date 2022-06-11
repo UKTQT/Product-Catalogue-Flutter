@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../extensions/color_extension/color_extension.dart';
-
 Future<void> loginFailed({required BuildContext context}) async {
   return showDialog<void>(
     context: context,

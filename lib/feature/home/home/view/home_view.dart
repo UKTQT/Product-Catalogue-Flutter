@@ -50,7 +50,7 @@ class HomeView extends StatelessWidget {
                               fontSize: 23, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          '${context.read<HomeViewModel>().productItems!.length ?? 0} units',
+                          '${context.watch<HomeViewModel>().productItems!.length} units',
                           style: const TextStyle(
                             fontSize: 18,
                           ),
@@ -62,8 +62,7 @@ class HomeView extends StatelessWidget {
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
                       itemCount:
-                          context.read<HomeViewModel>().productItems!.length ??
-                              1,
+                          context.watch<HomeViewModel>().productItems!.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: EdgeInsets.symmetric(
@@ -79,26 +78,24 @@ class HomeView extends StatelessWidget {
                                   padding: EdgeInsets.symmetric(
                                       vertical: context.lowHeightPadding),
                                   child: Text(context
-                                          .read<HomeViewModel>()
-                                          .productItems!
-                                          .elementAt(index)
-                                          .name
-                                          .toString() ??
-                                      'Error'),
+                                      .watch<HomeViewModel>()
+                                      .productItems!
+                                      .elementAt(index)
+                                      .name
+                                      .toString()),
                                 ),
                                 subtitle: Text(
                                     context
-                                            .read<HomeViewModel>()
-                                            .productItems!
-                                            .elementAt(index)
-                                            .description
-                                            .toString() ??
-                                        'Error',
+                                        .watch<HomeViewModel>()
+                                        .productItems!
+                                        .elementAt(index)
+                                        .description
+                                        .toString(),
                                     maxLines: 9),
                                 trailing: IconButton(
                                   onPressed: () {
                                     context
-                                        .read<HomeViewModel>()
+                                        .watch<HomeViewModel>()
                                         .fetchAllProducts();
                                     //_homeservice.fetchAllProducts();
                                   },
