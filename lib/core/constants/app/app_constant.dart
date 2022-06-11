@@ -15,7 +15,12 @@ class AppConstant {
   final String TITLE1 = 'Hoşgeldiniz';
   final String TITLE2 = 'Lütfen bilgileriniz ile giriş yapınız.';
   final String EMAIL = 'E-Mail';
+  final String EMAIL_VAL = 'E-Mail boş geçilemez.';
   final String PASS = 'Şifre';
+  final String PASS_VAL1 = 'Şifre boş geçilemez.';
+  final String PASS_VAL2 = 'Şifre 6 - 20 karakter olmalıdır.';
+  final String PASS_VAL3 = 'Boş karakter girilemez';
+  final String PASS_VAL4 = 'Şifre sadece harf ve rakamlardan oluşmalıdır';
   final String REMEMBER = 'Beni Hatırla';
   final String REMEMBER_SUB = 'Sonraki girişinizde hatırlanacaksınız.';
   final String REGISTER = 'Kayıt Ol';
