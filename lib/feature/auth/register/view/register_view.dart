@@ -84,206 +84,17 @@ class RegisterView extends StatelessWidget {
       Form(
           key: _formKey,
           child: Column(children: [
-            TextFormField(
-                controller: _nameController,
-                maxLines: 1,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.text,
-                cursorColor: context.themeMainColor1,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppConstant.instance!.NAME_VAL1;
-                  } else if (value.contains(' ')) {
-                    return AppConstant.instance!.NAME_VAL2;
-                  } else if (value.length > 20 || value.length < 3) {
-                    return AppConstant.instance!.NAME_VAL3;
-                  } else if (!RegExp(r"^[a-zA-Z]+$").hasMatch(value)) {
-                    return AppConstant.instance!.NAME_VAL4;
-                  }
-                  return null;
-                },
-                style: TextStyle(color: context.themeWhiteColor),
-                decoration: InputDecoration(
-                    isDense: true,
-                    labelText: AppConstant.instance!.NAME,
-                    labelStyle: TextStyle(color: context.themeWhite70Color),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: context.themeWhiteColor, width: 1.0)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: context.themeWhiteColor, width: 2.0)))),
+            nameController(context),
             SizedBox(height: context.mediumHeightPadding),
-            TextFormField(
-                controller: _surNameController,
-                maxLines: 1,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.text,
-                cursorColor: context.themeMainColor1,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppConstant.instance!.SURNAME_VAL1;
-                  } else if (value.contains(' ')) {
-                    return AppConstant.instance!.SURNAME_VAL2;
-                  } else if (value.length > 20 || value.length < 2) {
-                    return AppConstant.instance!.SURNAME_VAL3;
-                  } else if (!RegExp(r"^[a-zA-Z]+$").hasMatch(value)) {
-                    return AppConstant.instance!.SURNAME_VAL4;
-                  }
-                  return null;
-                },
-                style: TextStyle(color: context.themeWhiteColor),
-                decoration: InputDecoration(
-                    isDense: true,
-                    labelText: AppConstant.instance!.SURNAME,
-                    labelStyle: TextStyle(color: context.themeWhite70Color),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: context.themeWhiteColor, width: 1.0)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: context.themeWhiteColor, width: 2.0)))),
+            surNameController(context),
             SizedBox(height: context.mediumHeightPadding),
-            TextFormField(
-                controller: _phoneController,
-                maxLines: 1,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                inputFormatters: [PhoneNumberFormatter()], //(000) 000 00 00
-                cursorColor: context.themeMainColor1,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppConstant.instance!.PHONE_VAL1;
-                  } else if (value.length < 15 || value.length > 15) {
-                    return AppConstant.instance!.PHONE_VAL2;
-                  } /* else if (!RegExp(r"^[0-9]+$").hasMatch(value)) {
-                    return 'Telefon No sadece rakamlardan oluşabilir';
-                  } */
-                  return null;
-                },
-                style: TextStyle(color: context.themeWhiteColor),
-                decoration: InputDecoration(
-                    prefixText: AppConstant.instance!.PHONE2,
-                    prefixStyle: TextStyle(color: context.themeWhiteColor),
-                    isDense: true,
-                    labelText: AppConstant.instance!.PHONE,
-                    labelStyle: TextStyle(color: context.themeWhite70Color),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: context.themeWhiteColor, width: 1.0)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: context.themeWhiteColor, width: 2.0)))),
+            phoneController(context),
             SizedBox(height: context.mediumHeightPadding),
-            TextFormField(
-                controller: _emailController,
-                maxLines: 1,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.emailAddress,
-                cursorColor: context.themeMainColor1,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppConstant.instance!.EMAIL_VAL;
-                  } else if (!RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                      .hasMatch(value)) {
-                    return AppConstant.instance!.EMAIL_VAL2;
-                  }
-                  return null;
-                },
-                style: TextStyle(color: context.themeWhiteColor),
-                decoration: InputDecoration(
-                    isDense: true,
-                    labelText: AppConstant.instance!.EMAIL,
-                    labelStyle: TextStyle(color: context.themeWhite70Color),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: context.themeWhiteColor, width: 1.0)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: context.themeWhiteColor, width: 2.0)))),
+            emailController(context),
             SizedBox(height: context.mediumHeightPadding),
-            TextFormField(
-                controller: _passwordController,
-                obscureText:
-                    context.watch<RegisterViewModel>().passwordVisiblility,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppConstant.instance!.PASS_VAL1;
-                  } else if (value.length < 6 || value.length > 20) {
-                    return AppConstant.instance!.PASS_VAL2;
-                  } else if (value.contains(' ')) {
-                    return AppConstant.instance!.PASS_VAL3;
-                  } else if (!RegExp(r"^[a-zA-Z0-9_]*$").hasMatch(value)) {
-                    //Alfanumerik RegExp
-                    return AppConstant.instance!.PASS_VAL4;
-                  }
-                  return null;
-                },
-                style: TextStyle(color: context.themeWhiteColor),
-                decoration: InputDecoration(
-                    labelText: AppConstant.instance!.PASS,
-                    labelStyle: TextStyle(color: context.themeWhite70Color),
-                    suffixIcon: IconButton(
-                        onPressed: () {
-                          context
-                              .read<RegisterViewModel>()
-                              .passVisibilityChange();
-                        },
-                        icon: context
-                                    .watch<RegisterViewModel>()
-                                    .passwordVisiblility ==
-                                true
-                            ? Icon(Icons.visibility,
-                                color: context.themeWhiteColor)
-                            : Icon(Icons.visibility_off,
-                                color: context.themeWhiteColor)),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: context.themeWhiteColor, width: 1.0)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: context.themeWhiteColor, width: 2.0)))),
+            passwordController(context),
             SizedBox(height: context.mediumHeightPadding),
-            TextFormField(
-                controller: _passwordAgainController,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                obscureText:
-                    context.watch<RegisterViewModel>().passwordAgainVisiblility,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppConstant.instance!.PASS_VAL1;
-                  } else if (value.isNotEmpty || value != null) {
-                    if (value != _passwordController.text) {
-                      return AppConstant.instance!.PASS_VAL5;
-                    }
-                  }
-                  return null;
-                },
-                style: TextStyle(color: context.themeWhiteColor),
-                decoration: InputDecoration(
-                    labelText: AppConstant.instance!.PASS2,
-                    labelStyle: TextStyle(color: context.themeWhite70Color),
-                    suffixIcon: IconButton(
-                        onPressed: () {
-                          context
-                              .read<RegisterViewModel>()
-                              .passAgainVisibilityChange();
-                        },
-                        icon: context
-                                    .watch<RegisterViewModel>()
-                                    .passwordAgainVisiblility ==
-                                true
-                            ? Icon(Icons.visibility,
-                                color: context.themeWhiteColor)
-                            : Icon(Icons.visibility_off,
-                                color: context.themeWhiteColor)),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: context.themeWhiteColor, width: 1.0)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: context.themeWhiteColor, width: 2.0)))),
+            passwordAgainController(context),
             SizedBox(height: context.mediumHeightPadding),
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               ElevatedButton(
@@ -317,5 +128,209 @@ class RegisterView extends StatelessWidget {
             ])
           ]))
     ]);
+  }
+
+  TextFormField nameController(BuildContext context) {
+    return TextFormField(
+        controller: _nameController,
+        maxLines: 1,
+        textInputAction: TextInputAction.next,
+        keyboardType: TextInputType.text,
+        cursorColor: context.themeMainColor1,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return AppConstant.instance!.NAME_VAL1;
+          } else if (value.contains(' ')) {
+            return AppConstant.instance!.NAME_VAL2;
+          } else if (value.length > 20 || value.length < 3) {
+            return AppConstant.instance!.NAME_VAL3;
+          } else if (!RegExp(r"^[a-zA-Z]+$").hasMatch(value)) {
+            return AppConstant.instance!.NAME_VAL4;
+          }
+          return null;
+        },
+        style: TextStyle(color: context.themeWhiteColor),
+        decoration: InputDecoration(
+            isDense: true,
+            labelText: AppConstant.instance!.NAME,
+            labelStyle: TextStyle(color: context.themeWhite70Color),
+            enabledBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: context.themeWhiteColor, width: 1.0)),
+            focusedBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: context.themeWhiteColor, width: 2.0))));
+  }
+
+  TextFormField surNameController(BuildContext context) {
+    return TextFormField(
+        controller: _surNameController,
+        maxLines: 1,
+        textInputAction: TextInputAction.next,
+        keyboardType: TextInputType.text,
+        cursorColor: context.themeMainColor1,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return AppConstant.instance!.SURNAME_VAL1;
+          } else if (value.contains(' ')) {
+            return AppConstant.instance!.SURNAME_VAL2;
+          } else if (value.length > 20 || value.length < 2) {
+            return AppConstant.instance!.SURNAME_VAL3;
+          } else if (!RegExp(r"^[a-zA-Z]+$").hasMatch(value)) {
+            return AppConstant.instance!.SURNAME_VAL4;
+          }
+          return null;
+        },
+        style: TextStyle(color: context.themeWhiteColor),
+        decoration: InputDecoration(
+            isDense: true,
+            labelText: AppConstant.instance!.SURNAME,
+            labelStyle: TextStyle(color: context.themeWhite70Color),
+            enabledBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: context.themeWhiteColor, width: 1.0)),
+            focusedBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: context.themeWhiteColor, width: 2.0))));
+  }
+
+  TextFormField phoneController(BuildContext context) {
+    return TextFormField(
+        controller: _phoneController,
+        maxLines: 1,
+        textInputAction: TextInputAction.next,
+        keyboardType: TextInputType.number,
+        inputFormatters: [PhoneNumberFormatter()], //(000) 000 00 00
+        cursorColor: context.themeMainColor1,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return AppConstant.instance!.PHONE_VAL1;
+          } else if (value.length < 15 || value.length > 15) {
+            return AppConstant.instance!.PHONE_VAL2;
+          } /* else if (!RegExp(r"^[0-9]+$").hasMatch(value)) {
+                  return 'Telefon No sadece rakamlardan oluşabilir';
+                } */
+          return null;
+        },
+        style: TextStyle(color: context.themeWhiteColor),
+        decoration: InputDecoration(
+            prefixText: AppConstant.instance!.PHONE2,
+            prefixStyle: TextStyle(color: context.themeWhiteColor),
+            isDense: true,
+            labelText: AppConstant.instance!.PHONE,
+            labelStyle: TextStyle(color: context.themeWhite70Color),
+            enabledBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: context.themeWhiteColor, width: 1.0)),
+            focusedBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: context.themeWhiteColor, width: 2.0))));
+  }
+
+  TextFormField emailController(BuildContext context) {
+    return TextFormField(
+        controller: _emailController,
+        maxLines: 1,
+        textInputAction: TextInputAction.next,
+        keyboardType: TextInputType.emailAddress,
+        cursorColor: context.themeMainColor1,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return AppConstant.instance!.EMAIL_VAL;
+          } else if (!RegExp(
+                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+              .hasMatch(value)) {
+            return AppConstant.instance!.EMAIL_VAL2;
+          }
+          return null;
+        },
+        style: TextStyle(color: context.themeWhiteColor),
+        decoration: InputDecoration(
+            isDense: true,
+            labelText: AppConstant.instance!.EMAIL,
+            labelStyle: TextStyle(color: context.themeWhite70Color),
+            enabledBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: context.themeWhiteColor, width: 1.0)),
+            focusedBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: context.themeWhiteColor, width: 2.0))));
+  }
+
+  TextFormField passwordController(BuildContext context) {
+    return TextFormField(
+        controller: _passwordController,
+        obscureText: context.watch<RegisterViewModel>().passwordVisiblility,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return AppConstant.instance!.PASS_VAL1;
+          } else if (value.length < 6 || value.length > 20) {
+            return AppConstant.instance!.PASS_VAL2;
+          } else if (value.contains(' ')) {
+            return AppConstant.instance!.PASS_VAL3;
+          } else if (!RegExp(r"^[a-zA-Z0-9_]*$").hasMatch(value)) {
+            //Alfanumerik RegExp
+            return AppConstant.instance!.PASS_VAL4;
+          }
+          return null;
+        },
+        style: TextStyle(color: context.themeWhiteColor),
+        decoration: InputDecoration(
+            labelText: AppConstant.instance!.PASS,
+            labelStyle: TextStyle(color: context.themeWhite70Color),
+            suffixIcon: IconButton(
+                onPressed: () {
+                  context.read<RegisterViewModel>().passVisibilityChange();
+                },
+                icon: context.watch<RegisterViewModel>().passwordVisiblility ==
+                        true
+                    ? Icon(Icons.visibility, color: context.themeWhiteColor)
+                    : Icon(Icons.visibility_off,
+                        color: context.themeWhiteColor)),
+            enabledBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: context.themeWhiteColor, width: 1.0)),
+            focusedBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: context.themeWhiteColor, width: 2.0))));
+  }
+
+  TextFormField passwordAgainController(BuildContext context) {
+    return TextFormField(
+        controller: _passwordAgainController,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        obscureText:
+            context.watch<RegisterViewModel>().passwordAgainVisiblility,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return AppConstant.instance!.PASS_VAL1;
+          } else if (value.isNotEmpty || value != null) {
+            if (value != _passwordController.text) {
+              return AppConstant.instance!.PASS_VAL5;
+            }
+          }
+          return null;
+        },
+        style: TextStyle(color: context.themeWhiteColor),
+        decoration: InputDecoration(
+            labelText: AppConstant.instance!.PASS2,
+            labelStyle: TextStyle(color: context.themeWhite70Color),
+            suffixIcon: IconButton(
+                onPressed: () {
+                  context.read<RegisterViewModel>().passAgainVisibilityChange();
+                },
+                icon: context
+                            .watch<RegisterViewModel>()
+                            .passwordAgainVisiblility ==
+                        true
+                    ? Icon(Icons.visibility, color: context.themeWhiteColor)
+                    : Icon(Icons.visibility_off,
+                        color: context.themeWhiteColor)),
+            enabledBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: context.themeWhiteColor, width: 1.0)),
+            focusedBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: context.themeWhiteColor, width: 2.0))));
   }
 }
