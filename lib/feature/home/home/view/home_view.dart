@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:product_catalogue_flutter/feature/home/home/service/home_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/constants/app/app_constant.dart';
@@ -12,7 +11,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeService _homeservice = HomeService();
     return ChangeNotifierProvider<HomeViewModel>(
       lazy: false,
       create: (context) => HomeViewModel(),
@@ -44,11 +42,18 @@ class HomeView extends StatelessWidget {
                         vertical: context.mediumHeightPadding,
                         horizontal: context.lowWidthPadding),
                     child: Row(
-                      children: const [
-                        Text(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
                           'All Products',
                           style: TextStyle(
                               fontSize: 23, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '${context.read<HomeViewModel>().productItems!.length ?? 0} units',
+                          style: const TextStyle(
+                            fontSize: 18,
+                          ),
                         ),
                       ],
                     ),
@@ -68,10 +73,28 @@ class HomeView extends StatelessWidget {
                             child: Card(
                               elevation: 5,
                               child: ListTile(
+                                minVerticalPadding: context.lowHeightPadding2,
                                 tileColor: const Color(0xfff5f5f5),
-                                title: const Text('Product Name'),
-                                subtitle: const Text(
-                                    'DescriptionDescriptionDescription'),
+                                title: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: context.lowHeightPadding),
+                                  child: Text(context
+                                          .read<HomeViewModel>()
+                                          .productItems!
+                                          .elementAt(index)
+                                          .name
+                                          .toString() ??
+                                      'Error'),
+                                ),
+                                subtitle: Text(
+                                    context
+                                            .read<HomeViewModel>()
+                                            .productItems!
+                                            .elementAt(index)
+                                            .description
+                                            .toString() ??
+                                        'Error',
+                                    maxLines: 9),
                                 trailing: IconButton(
                                   onPressed: () {
                                     context
