@@ -3,6 +3,7 @@ import 'package:product_catalogue_flutter/core/constants/navigation/navigation_c
 import 'package:product_catalogue_flutter/feature/auth/login/view/login_view.dart';
 import 'package:product_catalogue_flutter/feature/auth/register/view/register_view.dart';
 import 'package:product_catalogue_flutter/feature/home/home/view/home_view.dart';
+import 'package:product_catalogue_flutter/feature/home/product/view/product_view.dart';
 
 import '../../../feature/auth/splash/view/splash_view.dart';
 
@@ -26,6 +27,9 @@ class NavigationRoute {
       case NavigationConstant.HOME:
         return normalNavigate(
             widget: const HomeView(), pageName: NavigationConstant.HOME);
+      case NavigationConstant.PRODUCT:
+        return normalNavigate(
+            widget: const ProductView(), pageName: NavigationConstant.PRODUCT);
 
       default:
         return normalNavigate(

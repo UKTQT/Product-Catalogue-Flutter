@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:product_catalogue_flutter/core/constants/navigation/navigation_constant.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -70,7 +71,10 @@ class HomeView extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                               vertical: context.lowHeightPadding),
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, NavigationConstant.PRODUCT);
+                            },
                             child: Card(
                               elevation: 5,
                               child: ListTile(

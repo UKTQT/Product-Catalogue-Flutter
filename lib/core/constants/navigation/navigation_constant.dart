@@ -3,4 +3,5 @@ class NavigationConstant {
   static const String LOGIN = '/loginView';
   static const String REGISTER = '/registerView';
   static const String HOME = '/homeView';
+  static const String PRODUCT = '/productView';
 }
