@@ -109,27 +109,6 @@ class ProductView extends StatelessWidget {
                                                   fontWeight: FontWeight.bold)),
                                     ),
                                     Expanded(flex: 1, child: SizedBox.shrink()),
-                                    Expanded(
-                                      flex: 0,
-                                      child: IconButton(
-                                        onPressed: () {
-                                          context
-                                              .read<ProductViewModel>()
-                                              .postProductLike(
-                                                  productId: args['productId']);
-                                        },
-                                        icon: context
-                                                    .watch<ProductViewModel>()
-                                                    .cache
-                                                    .preferences!
-                                                    .getBool(args['productId']
-                                                        .toString()) ==
-                                                true
-                                            ? Icon(Icons.favorite,
-                                                color: context.themeMainColor1)
-                                            : const Icon(Icons.favorite),
-                                      ),
-                                    )
                                   ],
                                 ),
                                 SizedBox(height: context.highHeightPadding),

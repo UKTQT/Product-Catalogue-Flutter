@@ -110,27 +110,54 @@ class HomeView extends StatelessWidget {
                             child: Card(
                               elevation: 5,
                               child: ListTile(
-                                minVerticalPadding: context.lowHeightPadding2,
-                                tileColor: const Color(0xfff5f5f5),
-                                title: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: context.lowHeightPadding),
-                                  child: Text(context
-                                      .watch<HomeViewModel>()
-                                      .productItems!
-                                      .elementAt(index)
-                                      .name
-                                      .toString()),
-                                ),
-                                subtitle: Text(
-                                    context
+                                  minVerticalPadding: context.lowHeightPadding2,
+                                  tileColor: const Color(0xfff5f5f5),
+                                  title: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: context.lowHeightPadding),
+                                    child: Text(context
                                         .watch<HomeViewModel>()
                                         .productItems!
                                         .elementAt(index)
-                                        .description
-                                        .toString(),
-                                    maxLines: 9),
-                                trailing: IconButton(
+                                        .name
+                                        .toString()),
+                                  ),
+                                  subtitle: Text(
+                                      context
+                                          .watch<HomeViewModel>()
+                                          .productItems!
+                                          .elementAt(index)
+                                          .description
+                                          .toString(),
+                                      maxLines: 9),
+                                  trailing: GestureDetector(
+                                    onTap: () {
+                                      context
+                                          .read<HomeViewModel>()
+                                          .postProductLike(
+                                              productId: context
+                                                  .read<HomeViewModel>()
+                                                  .productItems!
+                                                  .elementAt(index)
+                                                  .id);
+                                    },
+                                    child: context
+                                                .watch<HomeViewModel>()
+                                                .cache
+                                                .preferences!
+                                                .getBool(context
+                                                    .read<HomeViewModel>()
+                                                    .productItems!
+                                                    .elementAt(index)
+                                                    .id
+                                                    .toString()) ==
+                                            true
+                                        ? Icon(Icons.favorite,
+                                            color: context.themeMainColor1)
+                                        : const Icon(Icons.favorite),
+                                  )
+
+                                  /*  IconButton(
                                   onPressed: () {
                                     context
                                         .read<HomeViewModel>()
@@ -155,8 +182,8 @@ class HomeView extends StatelessWidget {
                                       ? Icon(Icons.favorite,
                                           color: context.themeMainColor1)
                                       : const Icon(Icons.favorite),
-                                ),
-                              ),
+                                ), */
+                                  ),
                             ),
                           ),
                         );

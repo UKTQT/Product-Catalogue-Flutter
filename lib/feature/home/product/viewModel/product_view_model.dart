@@ -8,14 +8,4 @@ class ProductViewModel extends ChangeNotifier with BaseViewModel {
   final ProductService _productService = ProductService();
 
   ProductViewModel() {}
-
-  postProductLike({required int? productId}) async {
-    if (!cache.preferences!.containsKey(productId.toString())) {
-      cache.preferences!.setBool(productId.toString(), true);
-    } else {
-      bool? productStatus = cache.preferences!.getBool(productId.toString());
-      cache.preferences!.setBool(productId.toString(), !productStatus!);
-    }
-    notifyListeners();
-  }
 }
