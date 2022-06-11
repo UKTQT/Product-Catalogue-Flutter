@@ -56,7 +56,9 @@ class HomeView extends StatelessWidget {
                   Expanded(
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
-                      itemCount: 20,
+                      itemCount:
+                          context.read<HomeViewModel>().productItems!.length ??
+                              1,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: EdgeInsets.symmetric(
@@ -72,10 +74,10 @@ class HomeView extends StatelessWidget {
                                     'DescriptionDescriptionDescription'),
                                 trailing: IconButton(
                                   onPressed: () {
-                                    /*  _homeservice.fetchAllProducts(); */
                                     context
                                         .read<HomeViewModel>()
                                         .fetchAllProducts();
+                                    //_homeservice.fetchAllProducts();
                                   },
                                   icon: const Icon(Icons.favorite),
                                 ),

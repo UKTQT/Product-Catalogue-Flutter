@@ -9,7 +9,7 @@ import '../model/product_model.dart';
 enum HomeServiceEnum { all }
 
 abstract class IHomeService {
-  Future<ProductModel?> fetchAllProducts({required String token});
+  Future<List<Products>?> fetchAllProducts({required String token});
 }
 
 class HomeService extends IHomeService {
@@ -23,7 +23,7 @@ class HomeService extends IHomeService {
   }
 
   @override
-  Future<ProductModel?> fetchAllProducts({String? token}) async {
+  Future<List<Products>?> fetchAllProducts({String? token}) async {
     try {
       final response = await _dio.get(
         HomeServiceEnum.all.name,
@@ -36,8 +36,8 @@ class HomeService extends IHomeService {
 
       if (response.statusCode == HttpStatus.ok) {
         final datas = response.data;
-        print(datas);
-        // return ProductModel.fromMap(datas);
+
+        return ProductModel.fromJson(datas).products;
       }
     } on DioError catch (e) {}
     return null;

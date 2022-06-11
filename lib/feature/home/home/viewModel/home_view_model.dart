@@ -8,9 +8,9 @@ class HomeViewModel extends ChangeNotifier {
   final HomeService _homeService = HomeService();
 
   //Product get
-  ProductModel? productItems;
+  List<Products>? productItems = [];
 
-  Future<ProductModel?>? fetchAllProducts() async {
+  Future<List<Products>?> fetchAllProducts() async {
     var sharedPreferences = await SharedPreferences.getInstance();
     String? token = sharedPreferences.getString('token');
 
