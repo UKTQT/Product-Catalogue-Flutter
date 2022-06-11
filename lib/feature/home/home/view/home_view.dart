@@ -79,8 +79,7 @@ class HomeView extends StatelessWidget {
                                         .read<HomeViewModel>()
                                         .productItems!
                                         .elementAt(index)
-                                        .id
-                                        .toString(),
+                                        .id,
                                     'productName': context
                                         .read<HomeViewModel>()
                                         .productItems!

@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/extensions/color_extension/color_extension.dart';
 import '../../../../core/extensions/padding_extension/padding_extension.dart';
 import '../../../../core/constants/app/app_constant.dart';
+import '../../home/viewModel/home_view_model.dart';
 
 class ProductView extends StatelessWidget {
   const ProductView({Key? key}) : super(key: key);
@@ -43,7 +44,8 @@ class ProductView extends StatelessWidget {
                         fit: BoxFit.fill,
                         child: Image(
                           image: NetworkImage(
-                              'https://assignment-api.piton.com.tr/static/1.jpeg'),
+                              'https://assignment-api.piton.com.tr' +
+                                  args['productImage']),
                         ),
                       ),
                     ),
@@ -110,8 +112,23 @@ class ProductView extends StatelessWidget {
                                     Expanded(
                                       flex: 0,
                                       child: IconButton(
-                                          onPressed: () {},
-                                          icon: Icon(Icons.favorite)),
+                                        onPressed: () {
+                                          context
+                                              .read<ProductViewModel>()
+                                              .postProductLike(
+                                                  productId: args['productId']);
+                                        },
+                                        icon: context
+                                                    .watch<ProductViewModel>()
+                                                    .cache
+                                                    .preferences!
+                                                    .getBool(args['productId']
+                                                        .toString()) ==
+                                                true
+                                            ? Icon(Icons.favorite,
+                                                color: context.themeMainColor1)
+                                            : const Icon(Icons.favorite),
+                                      ),
                                     )
                                   ],
                                 ),
@@ -139,9 +156,7 @@ class ProductView extends StatelessWidget {
                                           style: Theme.of(context)
                                               .textTheme
                                               .headline6
-                                              ?.copyWith(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black)),
+                                              ?.copyWith(color: Colors.black)),
                                     ),
                                   ],
                                 ),

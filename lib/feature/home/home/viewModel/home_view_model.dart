@@ -32,7 +32,6 @@ class HomeViewModel extends ChangeNotifier with BaseViewModel {
     } else {
       bool? productStatus = cache.preferences!.getBool(productId.toString());
       cache.preferences!.setBool(productId.toString(), !productStatus!);
-      print(cache.preferences!.getBool(productId.toString()));
     }
     notifyListeners();
   }
