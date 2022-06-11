@@ -18,7 +18,7 @@ class HomeService extends IHomeService {
   HomeService() {
     _dio = Dio(
       BaseOptions(
-          baseUrl: 'https://assignment-api.piton.com.tr/api/v1/product'),
+          baseUrl: 'https://assignment-api.piton.com.tr/api/v1/product/'),
     );
   }
 
@@ -29,11 +29,13 @@ class HomeService extends IHomeService {
     try {
       final response = await _dio.get(
         HomeServiceEnum.all.name,
-        queryParameters: {
-          'access-token': sharedPreferences.getString('token'),
-        },
+        options: Options(
+          headers: {
+            'access-token': sharedPreferences.getString('token'),
+          },
+        ),
       );
-      print(response);
+
       if (response.statusCode == HttpStatus.ok) {
         final datas = response.data;
 
