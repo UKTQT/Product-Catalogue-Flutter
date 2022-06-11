@@ -116,8 +116,9 @@ class HomeView extends StatelessWidget {
                                                   .id
                                                   .toString()) ==
                                           true
-                                      ? Icon(Icons.favorite)
-                                      : Text('ewqeq'),
+                                      ? Icon(Icons.favorite,
+                                          color: context.themeMainColor1)
+                                      : const Icon(Icons.favorite),
                                 ),
                               ),
                             ),
