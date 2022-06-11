@@ -16,11 +16,8 @@ class LoginService extends ILoginService {
   late final Dio _dio;
 
   LoginService() {
-    _dio = Dio(
-      BaseOptions(
-        baseUrl: 'https://assignment-api.piton.com.tr/api/v1/user/',
-      ),
-    );
+    _dio = Dio(BaseOptions(
+        baseUrl: 'https://assignment-api.piton.com.tr/api/v1/user/'));
   }
 
   @override
@@ -34,9 +31,7 @@ class LoginService extends ILoginService {
 
         return LoginModel.fromJson(datas);
       }
-    } on DioError catch (e) {
-      //
-    }
+    } on DioError catch (e) {}
     return null;
   }
 }
