@@ -198,6 +198,15 @@ class LoginView extends StatelessWidget {
                                 .loginDeleteSharedPrefences(
                                     email: _emailController.text);
                           }
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, '/homeView', (route) => false);
+                        } else {
+                          //if login failed
+                          context
+                              .read<LoginViewModel>()
+                              .failedLogin(context: context);
+                          _emailController.clear();
+                          _passwordController.clear();
                         }
                       });
                     }

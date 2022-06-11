@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../core/components/login/login_failed_show_dialog.dart';
 import '../service/login_service.dart';
 import '../model/login_model.dart';
 
 class LoginViewModel extends ChangeNotifier {
   final LoginService _loginService = LoginService();
 
-  //Form Items
+  // ------------------------- Form Items
   bool _passwordVisiblility = true;
   bool get passwordVisiblility => _passwordVisiblility;
 
@@ -24,7 +25,7 @@ class LoginViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  //Login Post
+  // ------------------------- Login Post
   LoginModel? responseVm;
   bool? loginStatus;
 
@@ -32,14 +33,19 @@ class LoginViewModel extends ChangeNotifier {
       {required String password_, required String email_}) async {
     responseVm =
         await _loginService.postLogin(password: password_, email: email_);
-
+    notifyListeners();
     if (responseVm!.token!.isNotEmpty) {
       return loginStatus = true;
+    } else {
+      return loginStatus = false;
     }
-    notifyListeners();
   }
 
-  //Login Shared Preferences
+  void failedLogin({required BuildContext context}) {
+    loginFailed(context: context);
+  }
+
+  // ------------------------- Login Shared Preferences
   void loginSaveSharedPrefences(
       {required String token,
       required String email,
