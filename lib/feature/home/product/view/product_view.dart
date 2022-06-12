@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:product_catalogue_flutter/core/extensions/color_extension/color_extension.dart';
 import 'package:product_catalogue_flutter/feature/home/product/viewModel/product_view_model.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +15,7 @@ class ProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('tr_TR', null);
     final args = ModalRoute.of(context)!.settings.arguments as Map;
     return ChangeNotifierProvider<ProductViewModel>(
       lazy: false,
@@ -91,7 +94,7 @@ class ProductView extends StatelessWidget {
                                     child: Icon(
                                       Icons.horizontal_rule,
                                       size: 40.0,
-                                      color: context.themeMainColor1,
+                                      color: context.themeWhiteColor,
                                     ),
                                   ),
                                 ),
@@ -118,7 +121,9 @@ class ProductView extends StatelessWidget {
                                 SizedBox(height: context.highHeightPadding),
                                 Row(children: [
                                   Expanded(
-                                      child: Text(args['productTime'] ?? '',
+                                      child: Text(
+                                          '${DateFormat('dd-MM-yyyy hh:mm').format(DateTime.parse('2022-04-08T11:56:14.613Z'))}' ??
+                                              '',
                                           style: Theme.of(context)
                                               .textTheme
                                               .subtitle1
@@ -131,14 +136,14 @@ class ProductView extends StatelessWidget {
                                             .subtitle2),
                                   )
                                 ]),
-                                SizedBox(height: context.mediumHeightPadding),
+                                SizedBox(height: context.mediumHeightPadding2),
                                 Row(
                                   children: [
                                     Expanded(
                                       child: Text(args['productDesc'] ?? '',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .headline6
+                                              .titleMedium
                                               ?.copyWith(color: Colors.black)),
                                     ),
                                   ],
