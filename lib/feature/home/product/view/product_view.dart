@@ -35,29 +35,17 @@ class ProductView extends StatelessWidget {
             height: double.maxFinite,
             child: Stack(
               children: [
-                Stack(
-                  children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
-                      child: FittedBox(
-                        fit: BoxFit.fill,
-                        child: Image(
-                          image: NetworkImage(
-                              'https://assignment-api.piton.com.tr' +
-                                  args['productImage']),
-                        ),
-                      ),
+                Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: FittedBox(
+                    fit: BoxFit.fill,
+                    child: Image(
+                      image: NetworkImage(
+                          'https://assignment-api.piton.com.tr' +
+                              args['productImage']),
                     ),
-                    Row(
-                      children: const [
-                        Text(
-                          'ewqe',
-                          style: TextStyle(color: Colors.amber),
-                        )
-                      ],
-                    )
-                  ],
+                  ),
                 ),
                 DraggableScrollableSheet(
                   initialChildSize: 0.1,
@@ -68,6 +56,13 @@ class ProductView extends StatelessWidget {
                   builder: (context, scrollController) {
                     return Container(
                       decoration: BoxDecoration(
+                        /* gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              context.themeWhiteColor,
+                              context.themeMainColor1,
+                            ]), */
                         color: context.themeWhiteColor,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(25.0),
@@ -84,11 +79,20 @@ class ProductView extends StatelessWidget {
                                 horizontal: context.highWidthPadding),
                             child: Column(
                               children: [
-                                Center(
-                                  child: Icon(
-                                    Icons.horizontal_rule,
-                                    size: 40.0,
-                                    color: Colors.black,
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: context.themeMainColor1,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(25.0),
+                                      topRight: Radius.circular(25.0),
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.horizontal_rule,
+                                      size: 40.0,
+                                      color: context.themeMainColor2,
+                                    ),
                                   ),
                                 ),
                                 SizedBox(
