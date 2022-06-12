@@ -58,7 +58,7 @@ Product category project, mastering the operations on an app's login and registr
       <td><img src="https://user-images.githubusercontent.com/17275354/173233766-df14f9eb-3004-4fde-bd68-9c1095aa5e26.gif" width="350" title="hover text"></td>
       <td><img src="https://user-images.githubusercontent.com/17275354/173233770-634ecc62-f91a-4586-8d59-c6de4810562f.gif" width="350" title="hover text"></td>
       <td><img src="https://user-images.githubusercontent.com/17275354/173233863-8eccee26-ffe3-4c6f-a02f-e88c212468c0.gif" width="350" title="hover text"></td>
-      <td><img src="" width="350" title="hover text"></td>
+      <td><img src="https://user-images.githubusercontent.com/17275354/173234112-f620b0da-27e1-4f95-be6d-50a1253297b7.gif" width="350" title="hover text"></td>
   </tr>
    <tr>
       <td>Login Page</td>
