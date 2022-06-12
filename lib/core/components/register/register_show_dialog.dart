@@ -12,7 +12,7 @@ Future<void> registerSuccesfull({required BuildContext context}) async {
         content: SingleChildScrollView(
           child: ListBody(
             children: <Widget>[
-              const Text('Giriş sayfasına yönlendiriliyorsunuz.'),
+              const Text('Anasayfaya yönlendiriliyorsunuz.'),
               Padding(
                 padding: const EdgeInsets.only(top: 15.0),
                 child: Center(

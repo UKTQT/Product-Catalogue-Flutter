@@ -23,13 +23,26 @@ dependencies:
   shared_preferences: ^2.0.15
   intl: ^0.17.0
 
+flutter_icons:
+  image_path: "assets/icon/logo.png"
+  android: true
+  ios: true
+  macos: true
+  windows: true
+  web: true
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  flutter_launcher_icons_maker: ^0.10.2
+  pedantic: ^1.11.0
+
+
 
 flutter:
   uses-material-design: true
   assets: 
+    - assets/
     - assets/images/

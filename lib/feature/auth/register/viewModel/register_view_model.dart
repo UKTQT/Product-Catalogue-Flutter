@@ -38,6 +38,7 @@ class RegisterViewModel extends ChangeNotifier with BaseViewModel {
         name: name_, password: password_, email: email_);
 
     if (responseVm!.token!.isNotEmpty || responseVm!.token != null) {
+      cache.preferences!.setString('token', responseVm!.token!);
       return registerStatus = true;
     }
     notifyListeners();
