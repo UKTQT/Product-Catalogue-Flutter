@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:product_catalogue_flutter/feature/home/home/model/product_like_model.dart';
 
 import '../model/product_model.dart';
 

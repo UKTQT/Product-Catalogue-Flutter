@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:product_catalogue_flutter/core/init/cache/cache.dart';
-import 'package:product_catalogue_flutter/feature/home/home/service/home_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/base/viewModel/base_view_model.dart';
+import '../service/home_service.dart';
 import '../model/product_model.dart';
 
 class HomeViewModel extends ChangeNotifier with BaseViewModel {

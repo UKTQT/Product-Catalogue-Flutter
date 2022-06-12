@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:product_catalogue_flutter/core/base/viewModel/base_view_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
+import './../../../../core/base/viewModel/base_view_model.dart';
 import '../../../../core/components/login/login_failed_show_dialog.dart';
 import '../service/login_service.dart';
 import '../model/login_model.dart';

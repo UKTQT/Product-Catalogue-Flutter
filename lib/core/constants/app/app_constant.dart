@@ -49,4 +49,8 @@ class AppConstant {
   final String REMEMBER_SUB = 'Sonraki girişinizde hatırlanacaksınız.';
   final String REGISTER = 'Kayıt Ol';
   final String LOGIN = 'Giriş Yap';
+
+  // ----- Home View
+  final String ALL_PRODUCT = 'Tüm Ürünler';
+  final String PRODUCT = ' ürün';
 }

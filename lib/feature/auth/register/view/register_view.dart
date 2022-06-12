@@ -84,6 +84,7 @@ class RegisterView extends StatelessWidget {
       Form(
           key: _formKey,
           child: Column(children: [
+            // --- İnput Group
             nameController(context),
             SizedBox(height: context.mediumHeightPadding),
             surNameController(context),

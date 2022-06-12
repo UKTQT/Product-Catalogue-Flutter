@@ -19,11 +19,10 @@ class LoginView extends StatelessWidget {
     var sharedPreferences = await SharedPreferences.getInstance();
 
     if (sharedPreferences.containsKey(email)) {
-      var _getStringList =
+      var getStringList =
           sharedPreferences.getStringList(email.substring(0, 3));
-      _emailController.text = _getStringList![1];
-
-      _passwordController.text = _getStringList[2];
+      _emailController.text = getStringList![1];
+      _passwordController.text = getStringList[2];
     }
   }
 
