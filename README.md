@@ -68,7 +68,7 @@ Product category project, mastering the operations on an app's login and registr
       <td><img src="https://user-images.githubusercontent.com/17275354/173232595-0c27058c-fa3b-400b-a171-fb0ba8658462.jpg" width="350" title="hover text"></td>
       <td><img src="https://user-images.githubusercontent.com/17275354/173232606-21d0dc5c-66fa-425f-8e79-0d337507ac35.jpg" width="350" title="hover text"></td>
   </tr>
-   <tr>
+  <tr>
       <td>Register Page</td>
   </tr>
   <tr>
@@ -89,7 +89,15 @@ Product category project, mastering the operations on an app's login and registr
       <td><img src="https://user-images.githubusercontent.com/17275354/173232772-81d14320-2c4f-4c82-8a49-9575f8255f90.jpg" width="350" title="hover text"></td>
       <td><img src="https://user-images.githubusercontent.com/17275354/173232776-3c88a66b-5aee-41e7-bf68-49c849e362c7.jpg" width="350" title="hover text"></td>
   </tr>
+   <tr>
+      <td>Home and Product Page</td>
+  </tr>
   <tr>
-      
+      <td><img src="https://user-images.githubusercontent.com/17275354/173232946-ea847dd1-a0ba-47e5-b623-84d572d6a097.jpg" width="350" title="hover text"></td>
+      <td><img src="https://user-images.githubusercontent.com/17275354/173232955-f5b12f84-29bd-4c3d-8b78-448d190df208.jpg" width="350" title="hover text"></td>
+      <td><img src="https://user-images.githubusercontent.com/17275354/173232967-25c18c9d-a8b5-4448-ae79-e66a5a39b167.jpg" width="350" title="hover text"></td>
+      <td><img src="https://user-images.githubusercontent.com/17275354/173232984-25bd25e4-65f1-4a08-93e3-1c163e47e290.jpg" width="350" title="hover text"></td>
+      <td><img src="https://user-images.githubusercontent.com/17275354/173233000-d7fc8111-73ac-41ac-a778-447a92fd2666.jpg" width="350" title="hover text"></td>
+      <td><img src="https://user-images.githubusercontent.com/17275354/173232995-06c58bac-f6e5-4015-adf6-9f87ef5f1934.jpg" width="350" title="hover text"></td>
   </tr>
 </table>
