@@ -34,6 +34,9 @@ flutter_icons:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_driver:
+    sdk: flutter  
+  test: ^1.14.4   
 
   flutter_lints: ^2.0.0
   flutter_launcher_icons_maker: ^0.10.2
