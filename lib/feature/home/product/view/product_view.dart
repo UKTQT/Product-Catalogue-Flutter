@@ -81,7 +81,7 @@ class ProductView extends StatelessWidget {
                               children: [
                                 Container(
                                   decoration: BoxDecoration(
-                                    color: context.themeMainColor1,
+                                    color: context.themeMainColor2,
                                     borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(25.0),
                                       topRight: Radius.circular(25.0),
@@ -91,7 +91,7 @@ class ProductView extends StatelessWidget {
                                     child: Icon(
                                       Icons.horizontal_rule,
                                       size: 40.0,
-                                      color: context.themeMainColor2,
+                                      color: context.themeMainColor1,
                                     ),
                                   ),
                                 ),
