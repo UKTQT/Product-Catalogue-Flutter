@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:product_catalogue_flutter/core/base/viewModel/base_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/components/login/login_failed_show_dialog.dart';
 import '../service/login_service.dart';
 import '../model/login_model.dart';
 
-class LoginViewModel extends ChangeNotifier {
+class LoginViewModel extends ChangeNotifier with BaseViewModel {
   final LoginService _loginService = LoginService();
 
   // ------------------------- Form Items
@@ -50,20 +51,18 @@ class LoginViewModel extends ChangeNotifier {
       {required String token,
       required String email,
       required String password}) async {
-    var sharedPreferences = await SharedPreferences.getInstance();
-
-    if (!sharedPreferences.containsKey(email)) {
+    if (!cache.preferences!.containsKey(email.substring(0, 3))) {
       //if not registered
-      sharedPreferences.setStringList(email, [token, email, password]);
+      cache.preferences!
+          .setStringList(email.substring(0, 3), [token, email, password]);
     }
-    sharedPreferences.setString('token', token);
+
+    cache.preferences!.setString('token', token);
   }
 
   void loginDeleteSharedPrefences({required String email}) async {
-    var sharedPreferences = await SharedPreferences.getInstance();
-
-    if (sharedPreferences.containsKey(email)) {
-      sharedPreferences.remove(email);
+    if (cache.preferences!.containsKey(email.substring(0, 3))) {
+      cache.preferences!.remove(email.substring(0, 3));
     }
   }
 }

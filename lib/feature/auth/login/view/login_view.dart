@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/constants/navigation/navigation_constant.dart';
 import '../../../../core/constants/app/app_constant.dart';
@@ -13,6 +14,18 @@ class LoginView extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  void inputRememberMeControl({required String email}) async {
+    var sharedPreferences = await SharedPreferences.getInstance();
+
+    if (sharedPreferences.containsKey(email)) {
+      var _getStringList =
+          sharedPreferences.getStringList(email.substring(0, 3));
+      _emailController.text = _getStringList![1];
+
+      _passwordController.text = _getStringList[2];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +97,9 @@ class LoginView extends StatelessWidget {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.emailAddress,
                 cursorColor: context.themeMainColor1,
+                onChanged: (value) {
+                  inputRememberMeControl(email: value);
+                },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return AppConstant.instance!.EMAIL_VAL;
